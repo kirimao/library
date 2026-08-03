@@ -71,6 +71,19 @@ new class extends Component
             <span>{{ __('nav.books') }}</span>
         </a>
 
+        {{-- Master Kategori --}}
+        <a href="{{ route('categories.index') }}"
+           class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150
+                  {{ request()->routeIs('categories.*')
+                      ? 'bg-white text-brand-700 shadow-sm'
+                      : 'text-white/75 hover:text-white hover:bg-white/15' }}">
+            <svg class="w-[18px] h-[18px] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+            </svg>
+            <span>{{ __('nav.categories') }}</span>
+        </a>
+
         {{-- Master Genre --}}
         <a href="{{ route('genres.index') }}"
            class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150
@@ -81,7 +94,7 @@ new class extends Component
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M7 7h.01M7 11h.01M7 15h.01M13 7h7M13 11h7M13 15h7M4 6h16a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2z"/>
             </svg>
-            <span>Kelola Genre</span>
+            <span>{{ __('nav.genres') }}</span>
         </a>
 
         {{-- Members --}}
@@ -158,7 +171,7 @@ new class extends Component
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M9 19v-6a2 2 0 012-2h2a2 2 0 012 2v6a2 2 0 01-2 2h-2a2 2 0 01-2-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
             </svg>
-            <span>Laporan Populer</span>
+            <span>{{ __('nav.popular_reports') }}</span>
         </a>
 
         {{-- Log Login (Admin Only) --}}
@@ -172,7 +185,7 @@ new class extends Component
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
             </svg>
-            <span>Log Login</span>
+            <span>{{ __('nav.login_logs') }}</span>
         </a>
         @endif
 

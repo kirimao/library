@@ -17,8 +17,11 @@ class BookForm extends Component
     public string $isbn = '';
     public ?int $category_id = null;
     public array $genre_ids = [];
-    public string $publisher = '';
+    public string $genreSearch = '';
+    public ?string $publisher = '';
     public ?int $year = null;
+    public ?int $arrival_month = null;
+    public ?int $arrival_year = null;
     public int $total_copies = 1;
     public ?string $shelf_location = '';
 
@@ -37,6 +40,8 @@ class BookForm extends Component
             'genre_ids.*' => 'exists:genres,id',
             'publisher' => 'nullable|string|max:255',
             'year' => 'nullable|integer|min:1900|max:' . (date('Y') + 1),
+            'arrival_month' => 'nullable|integer|min:1|max:12',
+            'arrival_year' => 'nullable|integer|min:1900|max:' . date('Y'),
             'total_copies' => 'required|integer|min:1',
             'shelf_location' => 'nullable|string|max:100',
         ];
@@ -57,6 +62,8 @@ class BookForm extends Component
             $this->genre_ids = $book->genres->pluck('id')->toArray();
             $this->publisher = $book->publisher ?? '';
             $this->year = $book->year;
+            $this->arrival_month = $book->arrival_month;
+            $this->arrival_year = $book->arrival_year;
             $this->total_copies = $book->total_copies;
             $this->shelf_location = $book->shelf_location ?? '';
         }
@@ -95,6 +102,13 @@ class BookForm extends Component
     ) {
         $categories = $categoryRepository->all();
         $allGenres = $genreRepository->all();
+
+        if (!empty(trim($this->genreSearch))) {
+            $search = trim($this->genreSearch);
+            $allGenres = $allGenres->filter(function ($genre) use ($search) {
+                return stripos($genre->name, $search) !== false;
+            });
+        }
 
         return view('livewire.books.book-form', compact('categories', 'allGenres'));
     }

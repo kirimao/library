@@ -97,13 +97,13 @@
     </section>
 
     {{-- STATISTICS SECTION --}}
-    <section class="py-16 lg:py-24 bg-slate-50">
+    <section class="py-12 lg:py-16 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-14">
+            <div class="text-center max-w-2xl mx-auto mb-10">
                 <span class="text-xs font-extrabold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1 rounded-full border border-brand-200/60">
                     Dashboard Ringkasan
                 </span>
-                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-3 mb-2 tracking-tight">
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2 mb-1.5 tracking-tight">
                     Statistik Perpustakaan
                 </h2>
                 <p class="text-slate-500 text-sm sm:text-base">
@@ -111,85 +111,85 @@
                 </p>
             </div>
 
-            {{-- 6 UNIFIED STAT CARDS GRID --}}
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5">
+            {{-- 6 UNIFIED COMPACT STAT CARDS GRID --}}
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-4">
                 
                 {{-- 1. Total Koleksi Buku --}}
-                <div class="group bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-emerald-300 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="h-12 w-12 rounded-2xl flex items-center justify-center bg-emerald-50 text-emerald-600 border border-emerald-100 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300 mb-4">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                            </svg>
-                        </div>
-                        <p class="text-3xl font-black text-slate-900 tracking-tight">{{ number_format($totalBooks) }}</p>
+                <div class="group bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm hover:shadow-lg hover:border-emerald-400 hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-3.5 h-full">
+                    <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center bg-emerald-50 text-emerald-600 border border-emerald-100/80 group-hover:scale-105 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300 flex-shrink-0">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
                     </div>
-                    <p class="text-xs font-bold text-slate-500 mt-2">Total Koleksi Buku</p>
+                    <div class="min-w-0 flex-1">
+                        <p class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">{{ number_format($totalBooks) }}</p>
+                        <p class="text-xs font-bold text-slate-500 truncate mt-0.5">Total Buku</p>
+                    </div>
                 </div>
 
                 {{-- 2. Anggota Aktif --}}
-                <div class="group bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-blue-300 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="h-12 w-12 rounded-2xl flex items-center justify-center bg-blue-50 text-blue-600 border border-blue-100 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 mb-4">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
-                            </svg>
-                        </div>
-                        <p class="text-3xl font-black text-slate-900 tracking-tight">{{ number_format($activeMembers) }}</p>
+                <div class="group bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm hover:shadow-lg hover:border-blue-400 hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-3.5 h-full">
+                    <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center bg-blue-50 text-blue-600 border border-blue-100/80 group-hover:scale-105 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 flex-shrink-0">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
                     </div>
-                    <p class="text-xs font-bold text-slate-500 mt-2">Anggota Aktif</p>
+                    <div class="min-w-0 flex-1">
+                        <p class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">{{ number_format($activeMembers) }}</p>
+                        <p class="text-xs font-bold text-slate-500 truncate mt-0.5">Anggota Aktif</p>
+                    </div>
                 </div>
 
                 {{-- 3. Buku Sedang Dipinjam --}}
-                <div class="group bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-amber-300 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="h-12 w-12 rounded-2xl flex items-center justify-center bg-amber-50 text-amber-600 border border-amber-100 group-hover:scale-110 group-hover:bg-amber-600 group-hover:text-white transition-all duration-300 mb-4">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
-                            </svg>
-                        </div>
-                        <p class="text-3xl font-black text-slate-900 tracking-tight">{{ number_format($activeLoans) }}</p>
+                <div class="group bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm hover:shadow-lg hover:border-amber-400 hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-3.5 h-full">
+                    <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center bg-amber-50 text-amber-600 border border-amber-100/80 group-hover:scale-105 group-hover:bg-amber-600 group-hover:text-white transition-all duration-300 flex-shrink-0">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+                        </svg>
                     </div>
-                    <p class="text-xs font-bold text-slate-500 mt-2">Sedang Dipinjam</p>
+                    <div class="min-w-0 flex-1">
+                        <p class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">{{ number_format($activeLoans) }}</p>
+                        <p class="text-xs font-bold text-slate-500 truncate mt-0.5">Dipinjam</p>
+                    </div>
                 </div>
 
                 {{-- 4. Aktivitas Hari Ini --}}
-                <div class="group bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-purple-300 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="h-12 w-12 rounded-2xl flex items-center justify-center bg-purple-50 text-purple-600 border border-purple-100 group-hover:scale-110 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300 mb-4">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
-                            </svg>
-                        </div>
-                        <p class="text-3xl font-black text-slate-900 tracking-tight">{{ number_format($todayActivity) }}</p>
+                <div class="group bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm hover:shadow-lg hover:border-purple-400 hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-3.5 h-full">
+                    <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center bg-purple-50 text-purple-600 border border-purple-100/80 group-hover:scale-105 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300 flex-shrink-0">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                        </svg>
                     </div>
-                    <p class="text-xs font-bold text-slate-500 mt-2">Aktivitas Hari Ini</p>
+                    <div class="min-w-0 flex-1">
+                        <p class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">{{ number_format($todayActivity) }}</p>
+                        <p class="text-xs font-bold text-slate-500 truncate mt-0.5">Aktivitas Hari Ini</p>
+                    </div>
                 </div>
 
                 {{-- 5. Pengembalian Hari Ini --}}
-                <div class="group bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-teal-300 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="h-12 w-12 rounded-2xl flex items-center justify-center bg-teal-50 text-teal-600 border border-teal-100 group-hover:scale-110 group-hover:bg-teal-600 group-hover:text-white transition-all duration-300 mb-4">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                        </div>
-                        <p class="text-3xl font-black text-slate-900 tracking-tight">{{ number_format($todayReturns) }}</p>
+                <div class="group bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm hover:shadow-lg hover:border-teal-400 hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-3.5 h-full">
+                    <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center bg-teal-50 text-teal-600 border border-teal-100/80 group-hover:scale-105 group-hover:bg-teal-600 group-hover:text-white transition-all duration-300 flex-shrink-0">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
                     </div>
-                    <p class="text-xs font-bold text-slate-500 mt-2">Dikembalikan Hari Ini</p>
+                    <div class="min-w-0 flex-1">
+                        <p class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">{{ number_format($todayReturns) }}</p>
+                        <p class="text-xs font-bold text-slate-500 truncate mt-0.5">Kembali Hari Ini</p>
+                    </div>
                 </div>
 
                 {{-- 6. Peminjaman Baru Hari Ini --}}
-                <div class="group bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-indigo-300 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="h-12 w-12 rounded-2xl flex items-center justify-center bg-indigo-50 text-indigo-600 border border-indigo-100 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 mb-4">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-                            </svg>
-                        </div>
-                        <p class="text-3xl font-black text-slate-900 tracking-tight">{{ number_format($todayLoans) }}</p>
+                <div class="group bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm hover:shadow-lg hover:border-indigo-400 hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-3.5 h-full">
+                    <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center bg-indigo-50 text-indigo-600 border border-indigo-100/80 group-hover:scale-105 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 flex-shrink-0">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                        </svg>
                     </div>
-                    <p class="text-xs font-bold text-slate-500 mt-2">Pinjaman Baru Hari Ini</p>
+                    <div class="min-w-0 flex-1">
+                        <p class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">{{ number_format($todayLoans) }}</p>
+                        <p class="text-xs font-bold text-slate-500 truncate mt-0.5">Pinjaman Baru</p>
+                    </div>
                 </div>
 
             </div>
@@ -215,91 +215,126 @@
             </div>
 
             @if($popularBooks->isNotEmpty())
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
                     @foreach($popularBooks as $index => $book)
                         @php
                             $rank = $index + 1;
+                            
+                            // Visual theme gradient fallback mapping based on category code
+                            $categoryCode = $book->category->code ?? '';
+                            $gradientClass = match($categoryCode) {
+                                'TECH' => 'from-slate-800 via-indigo-950 to-slate-900',
+                                'FIC'  => 'from-emerald-900 via-teal-950 to-slate-900',
+                                'SCI'  => 'from-blue-900 via-cyan-950 to-slate-900',
+                                'HIST' => 'from-amber-900 via-stone-900 to-slate-950',
+                                'BUS'  => 'from-slate-800 via-emerald-950 to-slate-950',
+                                'SELF' => 'from-purple-900 via-slate-900 to-indigo-950',
+                                default => 'from-slate-800 via-slate-900 to-emerald-950',
+                            };
                         @endphp
 
-                        <div class="group bg-white rounded-3xl border border-slate-200/90 p-5 hover:border-brand-400 hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+                        <div class="group bg-white rounded-2xl border border-slate-200/90 p-4 sm:p-5 hover:border-emerald-400 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex gap-4 sm:gap-5 items-start relative overflow-hidden">
                             
-                            {{-- UNIFORM NUMBER RANKING BADGES (#1 to #8) WITH TOP 3 MEDAL HIGHLIGHTS --}}
-                            <div class="absolute top-4 right-4 z-10">
-                                @if($rank === 1)
-                                    <span class="inline-flex items-center justify-center px-3 py-1 rounded-full text-xs font-black bg-gradient-to-r from-amber-400 to-amber-500 text-amber-950 shadow-md shadow-amber-500/20 border border-amber-300 ring-2 ring-amber-300/40">
-                                        🥇 #1
-                                    </span>
-                                @elseif($rank === 2)
-                                    <span class="inline-flex items-center justify-center px-3 py-1 rounded-full text-xs font-black bg-gradient-to-r from-slate-200 to-slate-300 text-slate-800 shadow-sm border border-slate-300 ring-2 ring-slate-200/50">
-                                        🥈 #2
-                                    </span>
-                                @elseif($rank === 3)
-                                    <span class="inline-flex items-center justify-center px-3 py-1 rounded-full text-xs font-black bg-gradient-to-r from-amber-700/20 to-amber-800/30 text-amber-900 border border-amber-700/30 ring-2 ring-amber-700/10">
-                                        🥉 #3
-                                    </span>
+                            {{-- BOOK COVER THUMBNAIL (LEFT SIDE) --}}
+                            <div class="w-24 sm:w-28 flex-shrink-0 aspect-[3/4] rounded-xl overflow-hidden shadow-md relative group-hover:shadow-lg transition-shadow bg-slate-900">
+                                @if(!empty($book->cover_image) || !empty($book->cover))
+                                    <img src="{{ asset('storage/' . ($book->cover_image ?? $book->cover)) }}"
+                                         alt="{{ $book->title }}"
+                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                                 @else
-                                    <span class="inline-flex items-center justify-center px-2.5 py-1 rounded-full text-xs font-extrabold bg-slate-100 text-slate-600 border border-slate-200 group-hover:bg-brand-50 group-hover:text-brand-700 group-hover:border-brand-200 transition-colors">
-                                        #{{ $rank }}
-                                    </span>
+                                    {{-- Stylized Graphic Book Cover Placeholder --}}
+                                    <div class="w-full h-full bg-gradient-to-br {{ $gradientClass }} p-2.5 flex flex-col justify-between relative border-l-4 border-white/20">
+                                        {{-- Pattern overlay --}}
+                                        <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:8px_8px]"></div>
+                                        <div class="absolute -right-6 -bottom-6 w-16 h-16 rounded-full bg-emerald-500/20 blur-md"></div>
+                                        
+                                        <div class="relative z-10">
+                                            <span class="inline-block text-[8px] font-extrabold tracking-wider uppercase bg-white/15 backdrop-blur-md text-emerald-200 px-1.5 py-0.5 rounded border border-white/10 truncate max-w-full">
+                                                {{ $book->category->name ?? 'Buku' }}
+                                            </span>
+                                        </div>
+
+                                        <div class="relative z-10 my-auto text-center py-1">
+                                            <svg class="w-7 h-7 mx-auto text-emerald-300/80 mb-1 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                            </svg>
+                                        </div>
+
+                                        <div class="relative z-10">
+                                            <p class="text-white font-extrabold text-[10px] sm:text-[11px] line-clamp-2 leading-tight group-hover:text-emerald-300 transition-colors">
+                                                {{ $book->title }}
+                                            </p>
+                                        </div>
+                                    </div>
                                 @endif
                             </div>
 
-                            <div>
-                                {{-- Stylized Book Cover Visual Component --}}
-                                <div class="w-full h-44 rounded-2xl bg-gradient-to-br from-slate-800 via-slate-900 to-brand-950 p-4 flex flex-col justify-between relative overflow-hidden mb-5 shadow-inner group-hover:shadow-lg transition-shadow">
-                                    {{-- Background Pattern Overlay --}}
-                                    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:12px_12px]"></div>
-                                    <div class="absolute -right-8 -bottom-8 w-28 h-28 rounded-full bg-brand-500/20 blur-xl group-hover:bg-brand-500/30 transition-all"></div>
-                                    
-                                    {{-- Category Badge --}}
-                                    <div class="relative z-10">
-                                        <span class="inline-block text-[10px] font-extrabold tracking-wider uppercase bg-white/15 backdrop-blur-md text-emerald-200 px-2.5 py-1 rounded-lg border border-white/10">
+                            {{-- BOOK DETAILS & CONTENT (RIGHT SIDE) --}}
+                            <div class="flex-1 min-w-0 flex flex-col justify-between self-stretch">
+                                <div>
+                                    {{-- TOP ROW: CATEGORY BADGE & RANKING BADGE --}}
+                                    <div class="flex items-center justify-between gap-2 mb-1.5">
+                                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200/60">
                                             {{ $book->category->name ?? 'Buku' }}
                                         </span>
+
+                                        {{-- RANKING BADGE --}}
+                                        <div>
+                                            @if($rank === 1)
+                                                <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded-full text-xs font-black bg-gradient-to-r from-amber-400 to-amber-500 text-amber-950 shadow-sm border border-amber-300 ring-2 ring-amber-300/40">
+                                                    🥇 #1
+                                                </span>
+                                            @elseif($rank === 2)
+                                                <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded-full text-xs font-black bg-gradient-to-r from-slate-200 to-slate-300 text-slate-800 shadow-sm border border-slate-300 ring-2 ring-slate-200/50">
+                                                    🥈 #2
+                                                </span>
+                                            @elseif($rank === 3)
+                                                <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded-full text-xs font-black bg-gradient-to-r from-amber-700/20 to-amber-800/30 text-amber-900 border border-amber-700/30 ring-2 ring-amber-700/10">
+                                                    🥉 #3
+                                                </span>
+                                            @else
+                                                <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-slate-100 text-slate-600 border border-slate-200 group-hover:bg-emerald-50 group-hover:text-emerald-700 group-hover:border-emerald-200 transition-colors">
+                                                    #{{ $rank }}
+                                                </span>
+                                            @endif
+                                        </div>
                                     </div>
 
-                                    {{-- Book Visual Title & Author Spine --}}
-                                    <div class="relative z-10">
-                                        <p class="text-white font-extrabold text-sm line-clamp-2 leading-snug group-hover:text-emerald-300 transition-colors">
-                                            {{ $book->title }}
-                                        </p>
-                                        <p class="text-slate-400 text-xs mt-1 truncate">
-                                            {{ $book->author }}
-                                        </p>
-                                    </div>
+                                    {{-- TITLE --}}
+                                    <h3 class="font-extrabold text-slate-900 text-sm sm:text-base leading-snug line-clamp-2 mb-1 group-hover:text-emerald-600 transition-colors">
+                                        {{ $book->title }}
+                                    </h3>
+
+                                    {{-- AUTHOR --}}
+                                    <p class="text-xs text-slate-400 font-medium mb-2.5 truncate">
+                                        Oleh: <span class="text-slate-600 font-semibold">{{ $book->author }}</span>
+                                    </p>
+
+                                    {{-- GENRE TAGS --}}
+                                    @if($book->genres->isNotEmpty())
+                                        <div class="flex flex-wrap gap-1 mb-3">
+                                            @foreach($book->genres->take(3) as $g)
+                                                <span class="text-[10px] font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200/70">
+                                                    {{ $g->name }}
+                                                </span>
+                                            @endforeach
+                                        </div>
+                                    @endif
                                 </div>
 
-                                {{-- Text Information --}}
-                                <h3 class="text-base font-bold text-slate-900 leading-snug mb-1 line-clamp-2 group-hover:text-brand-600 transition-colors">
-                                    {{ $book->title }}
-                                </h3>
-                                <p class="text-xs text-slate-400 font-medium mb-3">
-                                    Oleh: <span class="text-slate-600 font-semibold">{{ $book->author }}</span>
-                                </p>
-
-                                {{-- Genres --}}
-                                @if($book->genres->isNotEmpty())
-                                    <div class="flex flex-wrap gap-1 mb-4">
-                                        @foreach($book->genres->take(2) as $g)
-                                            <span class="text-[10px] font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200/60">
-                                                {{ $g->name }}
-                                            </span>
-                                        @endforeach
+                                {{-- FOOTER: STAT & STOCK --}}
+                                <div class="pt-2.5 border-t border-slate-100 flex items-center justify-between mt-auto">
+                                    <div class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200/60">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                        </svg>
+                                        <span>{{ $book->loans_count }}x Dibaca</span>
                                     </div>
-                                @endif
-                            </div>
-
-                            {{-- Footer Stat Badge --}}
-                            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
-                                <div class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-lg border border-brand-200/60">
-                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                                    </svg>
-                                    <span>{{ $book->loans_count }}x Dibaca</span>
+                                    <span class="text-[11px] font-semibold text-slate-400">
+                                        Stok: {{ $book->available_copies }}/{{ $book->total_copies }}
+                                    </span>
                                 </div>
-                                <span class="text-[11px] font-semibold text-slate-400">
-                                    Stok: {{ $book->available_copies }}/{{ $book->total_copies }}
-                                </span>
+
                             </div>
 
                         </div>

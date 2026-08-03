@@ -20,6 +20,7 @@ Route::get('/', LandingPage::class)->name('landing');
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
+    Route::get('/categories', \App\Livewire\Categories\CategoryManager::class)->name('categories.index');
     Route::get('/genres', GenreManager::class)->name('genres.index');
     Route::get('/books', BookIndex::class)->name('books.index');
     Route::get('/books/{id}', BookDetail::class)->name('books.show');

@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Collection;
 interface BookRepositoryInterface
 {
     public function all(array $relations = []): Collection;
-    public function paginate(int $perPage = 10, ?string $search = null, ?int $categoryId = null, ?int $genreId = null): LengthAwarePaginator;
+    public function paginate(int $perPage = 10, ?string $search = null, ?int $categoryId = null, ?int $genreId = null, ?string $arrivalStatus = null, ?int $arrivalYear = null): LengthAwarePaginator;
     public function findById(int $id): Book;
     public function findByIsbn(string $isbn): ?Book;
     public function create(array $data, array $genreIds = []): Book;

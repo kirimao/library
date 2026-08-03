@@ -17,7 +17,7 @@ class EloquentBookRepository implements BookRepositoryInterface
         return Book::with($relations)->orderBy('title')->get();
     }
 
-    public function paginate(int $perPage = 10, ?string $search = null, ?int $categoryId = null, ?int $genreId = null): LengthAwarePaginator
+    public function paginate(int $perPage = 10, ?string $search = null, ?int $categoryId = null, ?int $genreId = null, ?string $arrivalStatus = null, ?int $arrivalYear = null): LengthAwarePaginator
     {
         $query = Book::with(['category', 'genres']);
 
@@ -37,6 +37,21 @@ class EloquentBookRepository implements BookRepositoryInterface
             $query->whereHas('genres', function ($q) use ($genreId) {
                 $q->where('genres.id', $genreId);
             });
+        }
+
+        if (!empty($arrivalStatus)) {
+            if ($arrivalStatus === 'baru') {
+                $query->where('arrival_year', '>=', 2025);
+            } elseif ($arrivalStatus === 'lama') {
+                $query->where(function ($q) {
+                    $q->whereNull('arrival_year')
+                      ->orWhere('arrival_year', '<', 2025);
+                });
+            }
+        }
+
+        if (!empty($arrivalYear)) {
+            $query->where('arrival_year', $arrivalYear);
         }
 
         return $query->latest('id')->paginate($perPage);

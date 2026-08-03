@@ -11,8 +11,8 @@ class SearchBooksAction
         protected BookRepositoryInterface $bookRepository
     ) {}
 
-    public function execute(?string $search = null, ?int $categoryId = null, ?int $genreId = null, int $perPage = 10): LengthAwarePaginator
+    public function execute(?string $search = null, ?int $categoryId = null, ?int $genreId = null, ?string $arrivalStatus = null, ?int $arrivalYear = null, int $perPage = 10): LengthAwarePaginator
     {
-        return $this->bookRepository->paginate($perPage, $search, $categoryId, $genreId);
+        return $this->bookRepository->paginate($perPage, $search, $categoryId, $genreId, $arrivalStatus, $arrivalYear);
     }
 }

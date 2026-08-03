@@ -21,6 +21,10 @@ class GenreSeeder extends Seeder
             'Dongeng',
             'Informatika',
             'Biografi',
+            'Pengembangan Diri',
+            'Teknologi',
+            'Bisnis',
+            'Sejarah',
         ];
 
         foreach ($genres as $name) {

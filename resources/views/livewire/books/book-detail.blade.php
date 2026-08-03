@@ -25,18 +25,27 @@
 
     {{-- Book Card Header --}}
     <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col md:flex-row justify-between gap-6">
-        <div class="space-y-3">
+        <div class="space-y-3 flex-1">
             <div class="flex flex-wrap items-center gap-2">
                 <span class="badge-neutral">{{ $book->category->name ?? '-' }}</span>
                 @foreach($book->genres as $g)
                     <span class="badge-success text-xs">{{ $g->name }}</span>
                 @endforeach
+                @if($book->isNewArrival())
+                    <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-black bg-emerald-100 text-emerald-800 border border-emerald-300">
+                        ✨ Buku Baru (Kedatangan ≥ 2025)
+                    </span>
+                @else
+                    <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 border border-gray-200">
+                        📦 Buku Lama (Kedatangan < 2025)
+                    </span>
+                @endif
             </div>
 
             <h1 class="text-2xl font-black text-gray-900 leading-tight">{{ $book->title }}</h1>
             <p class="text-sm font-semibold text-gray-600">{{ __('books.author') }}: <span class="text-gray-900">{{ $book->author }}</span></p>
 
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2 text-xs text-gray-500">
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 pt-2 text-xs text-gray-500">
                 <div>
                     <span class="block text-gray-400 font-bold uppercase tracking-wider text-[10px]">{{ __('books.isbn') }}</span>
                     <span class="font-mono font-bold text-gray-800">{{ $book->isbn }}</span>
@@ -44,6 +53,16 @@
                 <div>
                     <span class="block text-gray-400 font-bold uppercase tracking-wider text-[10px]">{{ __('books.publisher') }} / {{ __('books.year') }}</span>
                     <span class="font-semibold text-gray-800">{{ $book->publisher ?? '-' }} ({{ $book->year ?? '-' }})</span>
+                </div>
+                <div>
+                    <span class="block text-gray-400 font-bold uppercase tracking-wider text-[10px]">Waktu Kedatangan</span>
+                    <span class="font-semibold text-brand-700">
+                        @if($book->arrival_month || $book->arrival_year)
+                            {{ $book->arrival_month_name }} {{ $book->arrival_year }}
+                        @else
+                            -
+                        @endif
+                    </span>
                 </div>
                 <div>
                     <span class="block text-gray-400 font-bold uppercase tracking-wider text-[10px]">{{ __('books.shelf_location') }}</span>

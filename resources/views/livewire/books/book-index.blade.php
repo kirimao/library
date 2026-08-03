@@ -4,9 +4,14 @@
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
             <h1 class="text-xl font-black text-gray-900">{{ __('nav.books') }}</h1>
-            <p class="text-sm text-gray-400 mt-0.5">Kelola katalog, genre, dan ketersediaan buku perpustakaan</p>
+            <p class="text-sm text-gray-400 mt-0.5">{{ __('books.subtitle') }}</p>
         </div>
         <div class="flex items-center gap-3">
+            @can('create', App\Models\Category::class)
+                <a href="{{ route('categories.index') }}" class="px-4 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold text-sm transition-all">
+                    {{ __('books.manage_categories') }}
+                </a>
+            @endcan
             @can('create', App\Models\Genre::class)
                 <a href="{{ route('genres.index') }}" class="px-4 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold text-sm transition-all">
                     {{ __('books.manage_genres') }}
@@ -42,8 +47,9 @@
     @endif
 
     {{-- Search & Filter --}}
-    <div class="bg-white border border-gray-200 rounded-2xl p-4 shadow-sm flex flex-col md:flex-row gap-3">
-        <div class="flex-1 relative">
+    <div class="bg-white border border-gray-200 rounded-2xl p-4 shadow-sm space-y-3">
+        {{-- Search Bar (Baris Atas Full Width) --}}
+        <div class="relative w-full">
             <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
                 <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
@@ -51,23 +57,42 @@
             </div>
             <input wire:model.live.debounce.300ms="search" type="text"
                    placeholder="{{ __('books.search_placeholder') }}"
-                   class="form-input pl-10">
+                   class="form-input pl-10 w-full">
         </div>
-        <div class="w-full md:w-48">
-            <select wire:model.live="categoryId" class="form-select">
-                <option value="">{{ __('common.all_categories') ?? 'Semua Kategori' }}</option>
-                @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="w-full md:w-48">
-            <select wire:model.live="genreId" class="form-select">
-                <option value="">{{ __('books.all_genres') }}</option>
-                @foreach($genres as $genre)
-                    <option value="{{ $genre->id }}">{{ $genre->name }}</option>
-                @endforeach
-            </select>
+
+        {{-- Dropdowns Filter (Baris Bawah Horizontal Samping-sampingan) --}}
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div>
+                <select wire:model.live="categoryId" class="form-select w-full">
+                    <option value="">{{ __('common.all_categories') ?? 'Semua Kategori' }}</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div>
+                <select wire:model.live="genreId" class="form-select w-full">
+                    <option value="">{{ __('books.all_genres') }}</option>
+                    @foreach($genres as $genre)
+                        <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div>
+                <select wire:model.live="arrivalStatus" class="form-select w-full">
+                    <option value="">{{ __('books.all_arrival_statuses') }}</option>
+                    <option value="baru">{{ __('books.new_arrival') }} (>= 2025)</option>
+                    <option value="lama">{{ __('books.old_arrival') }} (< 2025)</option>
+                </select>
+            </div>
+            <div>
+                <select wire:model.live="arrivalYear" class="form-select w-full">
+                    <option value="">{{ __('books.all_arrival_years') }}</option>
+                    @foreach($availableArrivalYears as $y)
+                        <option value="{{ $y }}">📅 {{ __('common.year') ?? 'Tahun' }} {{ $y }}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
     </div>
 
@@ -89,11 +114,26 @@
                     @forelse($books as $book)
                         <tr class="hover:bg-gray-50 transition-colors">
                             <td class="py-3.5 px-4">
-                                <a href="{{ route('books.show', $book->id) }}" class="text-sm font-bold text-gray-900 hover:text-brand-600 leading-tight">
-                                    {{ $book->title }} ↗
-                                </a>
-                                <p class="text-xs text-gray-400 mt-0.5">{{ $book->author }}
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <a href="{{ route('books.show', $book->id) }}" class="text-sm font-bold text-gray-900 hover:text-brand-600 leading-tight">
+                                        {{ $book->title }} ↗
+                                    </a>
+                                    @if($book->isNewArrival())
+                                        <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[10px] font-black bg-emerald-100 text-emerald-800 border border-emerald-300 flex-shrink-0">
+                                            {{ __('books.new_arrival') }}
+                                        </span>
+                                    @else
+                                        <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gray-100 text-gray-600 border border-gray-200 flex-shrink-0">
+                                            {{ __('books.old_arrival') }}
+                                        </span>
+                                    @endif
+                                </div>
+                                <p class="text-xs text-gray-400 mt-0.5">
+                                    {{ $book->author }}
                                     @if($book->publisher) · <span>{{ $book->publisher }} ({{ $book->year }})</span>@endif
+                                    @if($book->arrival_month || $book->arrival_year)
+                                        · <span class="text-brand-700 font-medium">{{ __('books.arrival_info') }}: {{ $book->arrival_month_name }} {{ $book->arrival_year }}</span>
+                                    @endif
                                 </p>
                             </td>
                             <td class="py-3.5 px-4">
