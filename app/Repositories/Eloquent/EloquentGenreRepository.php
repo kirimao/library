@@ -14,6 +14,17 @@ class EloquentGenreRepository implements GenreRepositoryInterface
         return Genre::orderBy('name', 'asc')->get();
     }
 
+    public function paginate(int $perPage = 15, ?string $search = null): \Illuminate\Contracts\Pagination\LengthAwarePaginator
+    {
+        $query = Genre::withCount('books');
+
+        if (!empty($search)) {
+            $query->where('name', 'like', "%{$search}%");
+        }
+
+        return $query->orderBy('name', 'asc')->paginate($perPage);
+    }
+
     public function findById(int $id): Genre
     {
         return Genre::findOrFail($id);

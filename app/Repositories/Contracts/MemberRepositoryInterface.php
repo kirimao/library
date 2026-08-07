@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Collection;
 interface MemberRepositoryInterface
 {
     public function all(): Collection;
-    public function paginate(int $perPage = 10, ?string $search = null, ?string $type = null): LengthAwarePaginator;
+    public function paginate(int $perPage = 10, ?string $search = null, ?string $type = null, ?string $grade = null): LengthAwarePaginator;
     public function findById(int $id): Member;
     public function findByMemberNumber(string $memberNumber): ?Member;
     public function create(array $data): Member;

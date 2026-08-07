@@ -19,6 +19,8 @@ return [
     'info' => 'Information',
     'no_data' => 'No records found.',
     'all' => 'All',
+    'show' => 'Show:',
+    'per_page' => 'per page',
     'all_categories' => 'All Categories',
     'year' => 'Year',
     'created_at' => 'Created At',

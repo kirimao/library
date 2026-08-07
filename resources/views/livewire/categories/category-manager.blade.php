@@ -31,6 +31,31 @@
         </div>
     @endif
 
+    {{-- Search Bar & Page Size Selector --}}
+    <div class="bg-white border border-gray-200 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+        <div class="relative flex-1">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+            </div>
+            <input wire:model.live.debounce.300ms="search" type="text"
+                   placeholder="Cari kategori berdasarkan nama..."
+                   class="form-input pl-10 w-full text-xs">
+        </div>
+        <div class="flex items-center gap-2 flex-shrink-0">
+            <label class="text-xs font-bold text-gray-500 whitespace-nowrap">{{ __('common.show') }}</label>
+            <select wire:model.live="perPage"
+                    class="form-select text-xs py-2 rounded-xl border-gray-300 font-bold text-gray-700 shadow-sm cursor-pointer"
+                    style="padding-right: 2.25rem !important; padding-left: 0.75rem !important; min-width: 92px !important; text-align: center !important;">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="all">{{ __('common.all') }}</option>
+            </select>
+        </div>
+    </div>
+
     {{-- Table --}}
     <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
         <div class="overflow-x-auto">
@@ -59,28 +84,28 @@
                             </td>
                             <td class="py-3.5 px-4 text-center">
                                 <span class="inline-flex items-center justify-center px-2.5 py-1 rounded-full text-xs font-bold bg-brand-50 text-brand-700 border border-brand-200">
-                                    {{ $category->books()->count() }} {{ __('books.title') }}
+                                    {{ $category->books_count ?? $category->books()->count() }} {{ __('books.title') }}
                                 </span>
                             </td>
                             <td class="py-3.5 px-4 text-right">
                                 <div class="flex items-center justify-end gap-2">
                                     @can('update', $category)
                                         <button wire:click="openModal({{ $category->id }})"
-                                                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand-50 hover:bg-brand-100 text-brand-700 font-semibold text-xs border border-brand-200 transition-all">
+                                                class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs inline-flex items-center gap-1.5 shadow-sm transition-all active:scale-95">
                                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                                             </svg>
-                                            {{ __('common.edit') }}
+                                            <span>{{ __('common.edit') }}</span>
                                         </button>
                                     @endcan
 
                                     @can('delete', $category)
                                         <button wire:click="confirmDelete({{ $category->id }})"
-                                                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-50 hover:bg-red-100 text-red-700 font-semibold text-xs border border-red-200 transition-all">
+                                                class="px-3 py-1.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs inline-flex items-center gap-1.5 shadow-sm transition-all active:scale-95">
                                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                                             </svg>
-                                            {{ __('common.delete') }}
+                                            <span>{{ __('common.delete') }}</span>
                                         </button>
                                     @endcan
                                 </div>
@@ -93,6 +118,9 @@
                     @endforelse
                 </tbody>
             </table>
+        </div>
+        <div class="px-4 py-3 border-t border-gray-100 bg-gray-50">
+            {{ $categories->links() }}
         </div>
     </div>
 

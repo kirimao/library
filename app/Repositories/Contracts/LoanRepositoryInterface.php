@@ -19,6 +19,7 @@ interface LoanRepositoryInterface
     public function create(array $data): Loan;
     public function update(int $id, array $data): Loan;
     public function getOverdueLoans(): Collection;
+    public function getOverdueLoansPaginated(int $perPage = 15, ?string $search = null): LengthAwarePaginator;
     public function getOverdueLoansCount(): int;
     public function getActiveLoansForMember(int $memberId): Collection;
     public function getHistoryForMember(int $memberId): Collection;

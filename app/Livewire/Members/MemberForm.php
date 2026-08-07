@@ -16,6 +16,7 @@ class MemberForm extends Component
     public string $email = '';
     public string $phone = '';
     public string $member_type = 'SD';
+    public string $grade = '';
     public string $status = 'active';
 
     public bool $isOpen = false;
@@ -27,9 +28,10 @@ class MemberForm extends Component
     {
         return [
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:members,email,' . ($this->memberId ?? 'NULL') . ',id',
+            'email' => 'nullable|email|max:255|unique:members,email,' . ($this->memberId ?? 'NULL') . ',id',
             'phone' => 'nullable|string|max:50',
             'member_type' => 'required|in:SD,SMP,SMA,Guru,Mahasiswa,Lainnya',
+            'grade' => 'nullable|string|max:50',
             'status' => 'required|in:active,inactive',
             'member_number' => 'nullable|string|max:50|unique:members,member_number,' . ($this->memberId ?? 'NULL') . ',id',
         ];
@@ -45,9 +47,10 @@ class MemberForm extends Component
             $this->memberId = $member->id;
             $this->member_number = $member->member_number;
             $this->name = $member->name;
-            $this->email = $member->email;
+            $this->email = $member->email ?? '';
             $this->phone = $member->phone ?? '';
             $this->member_type = $member->member_type;
+            $this->grade = $member->grade ?? '';
             $this->status = $member->status;
 
             $history = app(LoanRepositoryInterface::class)->getHistoryForMember($id);

@@ -20,12 +20,15 @@ class Loan extends Model
         'status',
         'reading_status',
         'fine_amount',
+        'reported_lost_by',
+        'reported_lost_at',
     ];
 
     protected $casts = [
-        'loan_date' => 'date',
+        'loan_date' => 'datetime',
         'due_date' => 'date',
-        'return_date' => 'date',
+        'return_date' => 'datetime',
+        'reported_lost_at' => 'datetime',
         'fine_amount' => 'decimal:2',
     ];
 
@@ -51,5 +54,13 @@ class Loan extends Model
     public function review(): HasOne
     {
         return $this->hasOne(BookReview::class);
+    }
+
+    /**
+     * Get the user who reported this book as lost.
+     */
+    public function reportedLostBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'reported_lost_by');
     }
 }

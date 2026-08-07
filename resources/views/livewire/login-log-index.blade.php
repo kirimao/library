@@ -15,9 +15,9 @@
         </div>
     @endif
 
-    {{-- Search --}}
-    <div class="bg-white border border-gray-200 rounded-2xl p-4 shadow-sm">
-        <div class="relative">
+    {{-- Search & Page Size Selector --}}
+    <div class="bg-white border border-gray-200 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+        <div class="relative flex-1">
             <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
                 <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
@@ -25,7 +25,21 @@
             </div>
             <input wire:model.live.debounce.300ms="search" type="text"
                    placeholder="Cari nama, email, role, atau IP address..."
-                   class="form-input pl-10">
+                   class="form-input pl-10 w-full">
+        </div>
+        <div class="flex items-center gap-2 flex-shrink-0">
+            <label class="text-xs font-bold text-gray-500 whitespace-nowrap">{{ __('common.show') }}</label>
+            <select wire:model.live="perPage"
+                    class="form-select text-xs py-2 rounded-xl border-gray-300 font-bold text-gray-700 shadow-sm cursor-pointer"
+                    style="padding-right: 2.25rem !important; padding-left: 0.75rem !important; min-width: 92px !important; text-align: center !important;">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                @if($canShowAll)
+                    <option value="all">{{ __('common.all') }}</option>
+                @endif
+            </select>
         </div>
     </div>
 

@@ -26,6 +26,31 @@
         </div>
     @endif
 
+    {{-- Search Bar & Page Size Selector --}}
+    <div class="bg-white border border-gray-200 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+        <div class="relative flex-1">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+            </div>
+            <input wire:model.live.debounce.300ms="search" type="text"
+                   placeholder="Cari peminjaman terlambat berdasarkan nama anggota, nomor anggota, atau judul buku..."
+                   class="form-input pl-10 w-full text-xs">
+        </div>
+        <div class="flex items-center gap-2 flex-shrink-0">
+            <label class="text-xs font-bold text-gray-500 whitespace-nowrap">{{ __('common.show') }}</label>
+            <select wire:model.live="perPage"
+                    class="form-select text-xs py-2 rounded-xl border-gray-300 font-bold text-gray-700 shadow-sm cursor-pointer"
+                    style="padding-right: 2.25rem !important; padding-left: 0.75rem !important; min-width: 92px !important; text-align: center !important;">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+        </div>
+    </div>
+
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         @forelse($overdueLoans as $loan)
             <div class="bg-white border border-red-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
@@ -63,11 +88,11 @@
                     </div>
                     <button onclick="confirm('{{ __('loans.return_confirm') }}') || event.stopImmediatePropagation()"
                             wire:click="processReturn({{ $loan->id }})"
-                            class="btn-primary">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs inline-flex items-center gap-1.5 shadow-sm transition-all active:scale-95">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
-                        Proses Kembali
+                        <span>Proses Kembali</span>
                     </button>
                 </div>
             </div>
@@ -82,5 +107,9 @@
                 <p class="text-sm text-gray-400 mt-1">Semua peminjaman buku berada dalam periode aman.</p>
             </div>
         @endforelse
+    </div>
+
+    <div class="px-4 py-3 border-t border-gray-100 bg-white rounded-2xl">
+        {{ $overdueLoans->links() }}
     </div>
 </div>

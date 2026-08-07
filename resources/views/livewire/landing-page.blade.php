@@ -237,7 +237,11 @@
                             
                             {{-- BOOK COVER THUMBNAIL (LEFT SIDE) --}}
                             <div class="w-24 sm:w-28 flex-shrink-0 aspect-[3/4] rounded-xl overflow-hidden shadow-md relative group-hover:shadow-lg transition-shadow bg-slate-900">
-                                @if(!empty($book->cover_image) || !empty($book->cover))
+                                @if(!empty($book->cover_thumbnail))
+                                    <img src="{{ asset('storage/' . $book->cover_thumbnail) }}"
+                                         alt="{{ $book->title }}"
+                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                @elseif(!empty($book->cover_image) || !empty($book->cover))
                                     <img src="{{ asset('storage/' . ($book->cover_image ?? $book->cover)) }}"
                                          alt="{{ $book->title }}"
                                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">

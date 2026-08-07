@@ -19,6 +19,8 @@ return [
     'info' => 'Informasi',
     'no_data' => 'Tidak ada data ditemukan.',
     'all' => 'Semua',
+    'show' => 'Tampilkan:',
+    'per_page' => 'per halaman',
     'all_categories' => 'Semua Kategori',
     'year' => 'Tahun',
     'created_at' => 'Dibuat Pada',

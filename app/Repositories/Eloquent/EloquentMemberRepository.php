@@ -20,21 +20,26 @@ class EloquentMemberRepository implements MemberRepositoryInterface
         return Member::where('status', 'active')->orderBy('name')->get();
     }
 
-    public function paginate(int $perPage = 10, ?string $search = null, ?string $type = null): LengthAwarePaginator
+    public function paginate(int $perPage = 10, ?string $search = null, ?string $type = null, ?string $grade = null): LengthAwarePaginator
     {
-        $query = Member::query();
+        $query = Member::withCount('loans');
 
         if (!empty($search)) {
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
                   ->orWhere('member_number', 'like', "%{$search}%")
                   ->orWhere('email', 'like', "%{$search}%")
-                  ->orWhere('phone', 'like', "%{$search}%");
+                  ->orWhere('phone', 'like', "%{$search}%")
+                  ->orWhere('grade', 'like', "%{$search}%");
             });
         }
 
         if (!empty($type)) {
             $query->where('member_type', $type);
+        }
+
+        if (!empty($grade)) {
+            $query->where('grade', $grade);
         }
 
         return $query->latest('id')->paginate($perPage);

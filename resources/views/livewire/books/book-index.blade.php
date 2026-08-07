@@ -18,6 +18,12 @@
                 </a>
             @endcan
             @can('create', App\Models\Book::class)
+                <a href="{{ route('books.import') }}" class="px-4 py-2.5 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-200 font-bold text-sm inline-flex items-center gap-1.5 transition-all">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
+                    </svg>
+                    <span>Impor CSV</span>
+                </a>
                 <button @click="$dispatch('openBookModal')" class="btn-primary">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
@@ -48,16 +54,29 @@
 
     {{-- Search & Filter --}}
     <div class="bg-white border border-gray-200 rounded-2xl p-4 shadow-sm space-y-3">
-        {{-- Search Bar (Baris Atas Full Width) --}}
-        <div class="relative w-full">
-            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                </svg>
+        {{-- Search Bar & Page Size Selector --}}
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+            <div class="relative flex-1">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </div>
+                <input wire:model.live.debounce.300ms="search" type="text"
+                       placeholder="{{ __('books.search_placeholder') }}"
+                       class="form-input pl-10 w-full">
             </div>
-            <input wire:model.live.debounce.300ms="search" type="text"
-                   placeholder="{{ __('books.search_placeholder') }}"
-                   class="form-input pl-10 w-full">
+            <div class="flex items-center gap-2 flex-shrink-0">
+                <label class="text-xs font-bold text-gray-500 whitespace-nowrap">{{ __('common.show') }}</label>
+                <select wire:model.live="perPage"
+                        class="form-select text-xs py-2 rounded-xl border-gray-300 font-bold text-gray-700 shadow-sm cursor-pointer"
+                        style="padding-right: 2.25rem !important; padding-left: 0.75rem !important; min-width: 92px !important; text-align: center !important;">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
         </div>
 
         {{-- Dropdowns Filter (Baris Bawah Horizontal Samping-sampingan) --}}
@@ -114,27 +133,42 @@
                     @forelse($books as $book)
                         <tr class="hover:bg-gray-50 transition-colors">
                             <td class="py-3.5 px-4">
-                                <div class="flex flex-wrap items-center gap-2">
-                                    <a href="{{ route('books.show', $book->id) }}" class="text-sm font-bold text-gray-900 hover:text-brand-600 leading-tight">
-                                        {{ $book->title }} ↗
-                                    </a>
-                                    @if($book->isNewArrival())
-                                        <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[10px] font-black bg-emerald-100 text-emerald-800 border border-emerald-300 flex-shrink-0">
-                                            {{ __('books.new_arrival') }}
-                                        </span>
-                                    @else
-                                        <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gray-100 text-gray-600 border border-gray-200 flex-shrink-0">
-                                            {{ __('books.old_arrival') }}
-                                        </span>
-                                    @endif
+                                <div class="flex items-start gap-3">
+                                    <div class="w-10 h-14 rounded-lg bg-slate-100 border border-slate-200 overflow-hidden flex-shrink-0 flex items-center justify-center text-slate-400">
+                                        @if(!empty($book->cover_thumbnail))
+                                            <img src="{{ asset('storage/' . $book->cover_thumbnail) }}" alt="{{ $book->title }}" class="w-full h-full object-cover">
+                                        @elseif(!empty($book->cover_image))
+                                            <img src="{{ asset('storage/' . $book->cover_image) }}" alt="{{ $book->title }}" class="w-full h-full object-cover">
+                                        @else
+                                            <svg class="w-5 h-5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                            </svg>
+                                        @endif
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex flex-wrap items-center gap-2">
+                                            <a href="{{ route('books.show', $book->id) }}" class="text-sm font-bold text-gray-900 hover:text-brand-600 leading-tight">
+                                                {{ $book->title }} ↗
+                                            </a>
+                                            @if($book->isNewArrival())
+                                                <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[10px] font-black bg-emerald-100 text-emerald-800 border border-emerald-300 flex-shrink-0">
+                                                    {{ __('books.new_arrival') }}
+                                                </span>
+                                            @else
+                                                <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gray-100 text-gray-600 border border-gray-200 flex-shrink-0">
+                                                    {{ __('books.old_arrival') }}
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <p class="text-xs text-gray-400 mt-0.5">
+                                            {{ $book->author }}
+                                            @if($book->publisher) · <span>{{ $book->publisher }} ({{ $book->year }})</span>@endif
+                                            @if($book->arrival_month || $book->arrival_year)
+                                                · <span class="text-brand-700 font-medium">{{ __('books.arrival_info') }}: {{ $book->arrival_month_name }} {{ $book->arrival_year }}</span>
+                                            @endif
+                                        </p>
+                                    </div>
                                 </div>
-                                <p class="text-xs text-gray-400 mt-0.5">
-                                    {{ $book->author }}
-                                    @if($book->publisher) · <span>{{ $book->publisher }} ({{ $book->year }})</span>@endif
-                                    @if($book->arrival_month || $book->arrival_year)
-                                        · <span class="text-brand-700 font-medium">{{ __('books.arrival_info') }}: {{ $book->arrival_month_name }} {{ $book->arrival_year }}</span>
-                                    @endif
-                                </p>
                             </td>
                             <td class="py-3.5 px-4">
                                 <div class="flex flex-wrap gap-1">

@@ -3,6 +3,7 @@
 namespace App\Actions\Loan;
 
 use App\Repositories\Contracts\LoanRepositoryInterface;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Carbon;
 
@@ -31,6 +32,26 @@ class GetOverdueLoansAction
         // Tambahkan atribut kalkulasi jumlah hari keterlambatan untuk tampilan UI
         $today = Carbon::today();
         foreach ($overdueLoans as $loan) {
+            $dueDate = Carbon::parse($loan->due_date);
+            $loan->days_late = (int) $dueDate->diffInDays($today);
+        }
+
+        return $overdueLoans;
+    }
+
+    /**
+     * Ambil daftar peminjaman terlambat terpaginasi dengan kalkulasi hari keterlambatan.
+     *
+     * @param int $perPage
+     * @param string|null $search
+     * @return LengthAwarePaginator
+     */
+    public function executePaginated(int $perPage = 15, ?string $search = null): LengthAwarePaginator
+    {
+        $overdueLoans = $this->loanRepository->getOverdueLoansPaginated($perPage, $search);
+
+        $today = Carbon::today();
+        foreach ($overdueLoans->items() as $loan) {
             $dueDate = Carbon::parse($loan->due_date);
             $loan->days_late = (int) $dueDate->diffInDays($today);
         }

@@ -19,15 +19,28 @@ class BookIndex extends Component
     public ?int $genreId = null;
     public ?string $arrivalStatus = null;
     public ?int $arrivalYear = null;
-    public int $perPage = 10;
+    public int|string $perPage = 10;
 
     protected $listeners = ['bookSaved' => '$refresh'];
+
+    public function mount(): void
+    {
+        $allowed = [10, 25, 50, 100];
+        $saved = session('perPage_books', 10);
+        $this->perPage = in_array((int)$saved, $allowed, true) ? (int)$saved : 10;
+    }
 
     public function updatingSearch() { $this->resetPage(); }
     public function updatingCategoryId() { $this->resetPage(); }
     public function updatingGenreId() { $this->resetPage(); }
     public function updatingArrivalStatus() { $this->resetPage(); }
     public function updatingArrivalYear() { $this->resetPage(); }
+
+    public function updatingPerPage(): void
+    {
+        $this->resetPage();
+        session(['perPage_books' => (int) $this->perPage]);
+    }
 
     public function deleteBook(int $id, DeleteBookAction $deleteBookAction)
     {
@@ -50,7 +63,7 @@ class BookIndex extends Component
             $this->genreId,
             $this->arrivalStatus,
             $this->arrivalYear,
-            $this->perPage
+            (int) $this->perPage
         );
         $categories = $categoryRepository->all();
         $genres = $genreRepository->all();
