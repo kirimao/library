@@ -39,7 +39,7 @@
                                 @error('name') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
                             </div>
                             <div>
-                                <label class="form-label">{{ __('members.email') }} *</label>
+                                <label class="form-label">{{ __('members.email') }}</label>
                                 <input wire:model="email" type="email" class="form-input">
                                 @error('email') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
                             </div>
@@ -56,7 +56,7 @@
                                 @error('phone') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
                             </div>
                         </div>
-                        <div class="grid grid-cols-2 gap-3">
+                        <div class="grid grid-cols-3 gap-3">
                             <div>
                                 <label class="form-label">{{ __('members.member_type') }} *</label>
                                 <select wire:model="member_type" class="form-select">
@@ -68,6 +68,11 @@
                                     <option value="Lainnya">{{ __('members.type_Lainnya') }}</option>
                                 </select>
                                 @error('member_type') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
+                            </div>
+                            <div>
+                                <label class="form-label">Kelas</label>
+                                <input wire:model="grade" type="text" placeholder="mis. Kelas 2" class="form-input">
+                                @error('grade') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
                             </div>
                             <div>
                                 <label class="form-label">{{ __('members.status') }} *</label>

@@ -11,6 +11,7 @@ return [
     'overdue' => 'Peringatan Terlambat',
     'popular_reports' => 'Laporan Populer',
     'login_logs' => 'Log Login',
+    'users' => 'Kelola Pustakawan',
     'logout' => 'Keluar',
     'language' => 'Bahasa',
     'indonesian' => 'Bahasa Indonesia',

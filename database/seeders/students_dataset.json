@@ -1,0 +1,890 @@
+[
+  {
+    "name": "Ahmad Khaerul Wady Zulfy",
+    "nis": "427",
+    "member_type": "SD",
+    "grade": "Kelas 2"
+  },
+  {
+    "name": "Ahmad Kholid",
+    "nis": "428",
+    "member_type": "SD",
+    "grade": "Kelas 2"
+  },
+  {
+    "name": "Puji Rahayu",
+    "nis": "429",
+    "member_type": "SD",
+    "grade": "Kelas 2"
+  },
+  {
+    "name": "Malea Puspita",
+    "nis": "430",
+    "member_type": "SD",
+    "grade": "Kelas 2"
+  },
+  {
+    "name": "Nizam Azwarul Kahfi",
+    "nis": "431",
+    "member_type": "SD",
+    "grade": "Kelas 2"
+  },
+  {
+    "name": "Muhammad Yunus Junaidi",
+    "nis": "432",
+    "member_type": "SD",
+    "grade": "Kelas 2"
+  },
+  {
+    "name": "Lily Asyahida Cahyani",
+    "nis": "433",
+    "member_type": "SD",
+    "grade": "Kelas 2"
+  },
+  {
+    "name": "Hata Maolana Sakil",
+    "nis": "434",
+    "member_type": "SD",
+    "grade": "Kelas 2"
+  },
+  {
+    "name": "Muhamad Febriawan",
+    "nis": "435",
+    "member_type": "SD",
+    "grade": "Kelas 2"
+  },
+  {
+    "name": "Attayaayada Dzuhriyyah",
+    "nis": "436",
+    "member_type": "SD",
+    "grade": "Kelas 2"
+  },
+  {
+    "name": "Ahmad Rapa Azkaputra",
+    "nis": "437",
+    "member_type": "SD",
+    "grade": "Kelas 2"
+  },
+  {
+    "name": "Izzatul Aulia",
+    "nis": "438",
+    "member_type": "SD",
+    "grade": "Kelas 2"
+  },
+  {
+    "name": "Medina Zahra Ratifa",
+    "nis": "439",
+    "member_type": "SD",
+    "grade": "Kelas 2"
+  },
+  {
+    "name": "Anwar",
+    "nis": "440",
+    "member_type": "SD",
+    "grade": "Kelas 2"
+  },
+  {
+    "name": "Mila Apriliani",
+    "nis": "441",
+    "member_type": "SD",
+    "grade": "Kelas 2"
+  },
+  {
+    "name": "Ahmad Al Farizi",
+    "nis": "414",
+    "member_type": "SD",
+    "grade": "Kelas 3"
+  },
+  {
+    "name": "Erwin Saputra",
+    "nis": "412",
+    "member_type": "SD",
+    "grade": "Kelas 3"
+  },
+  {
+    "name": "Gazala Fairuza",
+    "nis": "409",
+    "member_type": "SD",
+    "grade": "Kelas 3"
+  },
+  {
+    "name": "Muhammad Farhan Syamil Arzaqi",
+    "nis": "405",
+    "member_type": "SD",
+    "grade": "Kelas 3"
+  },
+  {
+    "name": "Muhammad Allif Maulana",
+    "nis": "415",
+    "member_type": "SD",
+    "grade": "Kelas 3"
+  },
+  {
+    "name": "Muhammad Azam",
+    "nis": "416",
+    "member_type": "SD",
+    "grade": "Kelas 3"
+  },
+  {
+    "name": "Muhammad Jaelani Alvicky",
+    "nis": "407",
+    "member_type": "SD",
+    "grade": "Kelas 3"
+  },
+  {
+    "name": "M. Abdul Qodir Mustafa Kamil",
+    "nis": "408",
+    "member_type": "SD",
+    "grade": "Kelas 3"
+  },
+  {
+    "name": "Muhammad Gibran Hadi",
+    "nis": "410",
+    "member_type": "SD",
+    "grade": "Kelas 3"
+  },
+  {
+    "name": "Muhammad Arga",
+    "nis": "418",
+    "member_type": "SD",
+    "grade": "Kelas 3"
+  },
+  {
+    "name": "Muhammad Zain Abdullah",
+    "nis": "423",
+    "member_type": "SD",
+    "grade": "Kelas 3"
+  },
+  {
+    "name": "Riana Anggi  Saputri",
+    "nis": "413",
+    "member_type": "SD",
+    "grade": "Kelas 3"
+  },
+  {
+    "name": "Rizki Alfarik",
+    "nis": "403",
+    "member_type": "SD",
+    "grade": "Kelas 3"
+  },
+  {
+    "name": "Riski Aditia",
+    "nis": "404",
+    "member_type": "SD",
+    "grade": "Kelas 3"
+  },
+  {
+    "name": "Sapta Alfia",
+    "nis": "417",
+    "member_type": "SD",
+    "grade": "Kelas 3"
+  },
+  {
+    "name": "Sofiani Soleha",
+    "nis": "411",
+    "member_type": "SD",
+    "grade": "Kelas 3"
+  },
+  {
+    "name": "Syafa Mizani",
+    "nis": "406",
+    "member_type": "SD",
+    "grade": "Kelas 3"
+  },
+  {
+    "name": "Yana Al- Thofun Nisa",
+    "nis": "402",
+    "member_type": "SD",
+    "grade": "Kelas 3"
+  },
+  {
+    "name": "Abdul Hayat Febrinanda",
+    "nis": "341",
+    "member_type": "SD",
+    "grade": "Kelas 4"
+  },
+  {
+    "name": "Ahmad Rohyani Shah",
+    "nis": "339",
+    "member_type": "SD",
+    "grade": "Kelas 4"
+  },
+  {
+    "name": "Ahmad Samudra Al Farabi",
+    "nis": "424",
+    "member_type": "SD",
+    "grade": "Kelas 4"
+  },
+  {
+    "name": "Dafa Rifky Akbar",
+    "nis": "333",
+    "member_type": "SD",
+    "grade": "Kelas 4"
+  },
+  {
+    "name": "Evan Ismayanto",
+    "nis": "335",
+    "member_type": "SD",
+    "grade": "Kelas 4"
+  },
+  {
+    "name": "Hidayah",
+    "nis": "336",
+    "member_type": "SD",
+    "grade": "Kelas 4"
+  },
+  {
+    "name": "Imam Putra",
+    "nis": "334",
+    "member_type": "SD",
+    "grade": "Kelas 4"
+  },
+  {
+    "name": "Muhammad Azka Razin",
+    "nis": "337",
+    "member_type": "SD",
+    "grade": "Kelas 4"
+  },
+  {
+    "name": "Muhammad Fathan Al-Lafif",
+    "nis": "338",
+    "member_type": "SD",
+    "grade": "Kelas 4"
+  },
+  {
+    "name": "Muhammad Zidan",
+    "nis": "342",
+    "member_type": "SD",
+    "grade": "Kelas 4"
+  },
+  {
+    "name": "M. Azka Rabbani",
+    "nis": "343",
+    "member_type": "SD",
+    "grade": "Kelas 4"
+  },
+  {
+    "name": "Muhammad Fatih Naufal",
+    "nis": "420",
+    "member_type": "SD",
+    "grade": "Kelas 4"
+  },
+  {
+    "name": "Muhammad Arkan Firdaus",
+    "nis": "422",
+    "member_type": "SD",
+    "grade": "Kelas 4"
+  },
+  {
+    "name": "Alia",
+    "nis": "326",
+    "member_type": "SD",
+    "grade": "Kelas 5"
+  },
+  {
+    "name": "Ahyar Rosidin",
+    "nis": "347",
+    "member_type": "SD",
+    "grade": "Kelas 5"
+  },
+  {
+    "name": "Dania Sukma Dewi",
+    "nis": "304",
+    "member_type": "SD",
+    "grade": "Kelas 5"
+  },
+  {
+    "name": "Delima Tusahra",
+    "nis": "307",
+    "member_type": "SD",
+    "grade": "Kelas 5"
+  },
+  {
+    "name": "Hayu Handika",
+    "nis": "314",
+    "member_type": "SD",
+    "grade": "Kelas 5"
+  },
+  {
+    "name": "Ida Ayu Putri Ratnawati",
+    "nis": "315",
+    "member_type": "SD",
+    "grade": "Kelas 5"
+  },
+  {
+    "name": "Jordan Aploransa",
+    "nis": "311",
+    "member_type": "SD",
+    "grade": "Kelas 5"
+  },
+  {
+    "name": "Lutfi Saki Azidan",
+    "nis": "401",
+    "member_type": "SD",
+    "grade": "Kelas 5"
+  },
+  {
+    "name": "Muhammad Zul Mayadi",
+    "nis": "308",
+    "member_type": "SD",
+    "grade": "Kelas 5"
+  },
+  {
+    "name": "Muhammad Pirza Farizi",
+    "nis": "348",
+    "member_type": "SD",
+    "grade": "Kelas 5"
+  },
+  {
+    "name": "Muhammad Zain Rasyid",
+    "nis": "419",
+    "member_type": "SD",
+    "grade": "Kelas 5"
+  },
+  {
+    "name": "Naufal Afkary Pratama",
+    "nis": "303",
+    "member_type": "SD",
+    "grade": "Kelas 5"
+  },
+  {
+    "name": "Najwan",
+    "nis": "305",
+    "member_type": "SD",
+    "grade": "Kelas 5"
+  },
+  {
+    "name": "Nepa Hikwanto",
+    "nis": "312",
+    "member_type": "SD",
+    "grade": "Kelas 5"
+  },
+  {
+    "name": "Nopi Adlia Astuti",
+    "nis": "313",
+    "member_type": "SD",
+    "grade": "Kelas 5"
+  },
+  {
+    "name": "Fatimah Nur Hidayah",
+    "nis": "324",
+    "member_type": "SD",
+    "grade": "Kelas 5"
+  },
+  {
+    "name": "Suciatul Soleha",
+    "nis": "309",
+    "member_type": "SD",
+    "grade": "Kelas 5"
+  },
+  {
+    "name": "Sayidatunnisa'ukamila",
+    "nis": "316",
+    "member_type": "SD",
+    "grade": "Kelas 5"
+  },
+  {
+    "name": "Tsamara Ulfa",
+    "nis": "302",
+    "member_type": "SD",
+    "grade": "Kelas 5"
+  },
+  {
+    "name": "Zoya Cantika",
+    "nis": "451",
+    "member_type": "SD",
+    "grade": "Kelas 5"
+  },
+  {
+    "name": "Ahmad Paesal",
+    "nis": "323",
+    "member_type": "SD",
+    "grade": "Kelas 6"
+  },
+  {
+    "name": "Asriyani Djabar Haiyun",
+    "nis": "239",
+    "member_type": "SD",
+    "grade": "Kelas 6"
+  },
+  {
+    "name": "Elsa Safira",
+    "nis": "254",
+    "member_type": "SD",
+    "grade": "Kelas 6"
+  },
+  {
+    "name": "Farhan Salim",
+    "nis": "264",
+    "member_type": "SD",
+    "grade": "Kelas 6"
+  },
+  {
+    "name": "Hafizan Al Jibran",
+    "nis": "250",
+    "member_type": "SD",
+    "grade": "Kelas 6"
+  },
+  {
+    "name": "Irma Sakila",
+    "nis": "244",
+    "member_type": "SD",
+    "grade": "Kelas 6"
+  },
+  {
+    "name": "Jenita Lovenia Keynora",
+    "nis": "237",
+    "member_type": "SD",
+    "grade": "Kelas 6"
+  },
+  {
+    "name": "#REF!",
+    "nis": "#REF!",
+    "member_type": "SD",
+    "grade": "Kelas 6"
+  },
+  {
+    "name": "Lailatul Aulia",
+    "nis": "346",
+    "member_type": "SD",
+    "grade": "Kelas 6"
+  },
+  {
+    "name": "Nabila Sakila",
+    "nis": "242",
+    "member_type": "SD",
+    "grade": "Kelas 6"
+  },
+  {
+    "name": "Putri Herlina",
+    "nis": "240",
+    "member_type": "SD",
+    "grade": "Kelas 6"
+  },
+  {
+    "name": "Riski Adiguna",
+    "nis": "241",
+    "member_type": "SD",
+    "grade": "Kelas 6"
+  },
+  {
+    "name": "Ridwan Mustafa Kamal",
+    "nis": "332",
+    "member_type": "SD",
+    "grade": "Kelas 6"
+  },
+  {
+    "name": "Raynanda Forland Bianci",
+    "nis": "344",
+    "member_type": "SD",
+    "grade": "Kelas 6"
+  },
+  {
+    "name": "Tata Natasya",
+    "nis": "238",
+    "member_type": "SD",
+    "grade": "Kelas 6"
+  },
+  {
+    "name": "Wahyu Suriadi",
+    "nis": "400",
+    "member_type": "SD",
+    "grade": "Kelas 6"
+  },
+  {
+    "name": "Zaenal Fahmi",
+    "nis": "235",
+    "member_type": "SD",
+    "grade": "Kelas 6"
+  },
+  {
+    "name": "Dimas Jepri",
+    "nis": "0",
+    "member_type": "SD",
+    "grade": "Kelas 6"
+  },
+  {
+    "name": "Alimatun Zaini",
+    "nis": "0138",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "Alvian Pratama",
+    "nis": "0139",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "April Liyani",
+    "nis": "0140",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "Arkam Aklls",
+    "nis": "0141",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "Bintang Aditya Pratama",
+    "nis": "0142",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "Dewi Anjar Birawa",
+    "nis": "0143",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "Dini Kartika Sari",
+    "nis": "0144",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "Habib Al Ghifari",
+    "nis": "0145",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "Helmi Zahratul Ahyan",
+    "nis": "0146",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "Muhammad Sandi",
+    "nis": "0147",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "Muhammad Siddiq Abdul Malik",
+    "nis": "0148",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "Natasya Audi Aulia Putri",
+    "nis": "0149",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "Novi Nurilita",
+    "nis": "0150",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "Octavia Putri",
+    "nis": "0151",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "Queenta Arnelita",
+    "nis": "0152",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "Ruslan Jayadi",
+    "nis": "0153",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "sasmita",
+    "nis": "0154",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "Suci Hazla Utari",
+    "nis": "0155",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "Tiara Suci Cahyani",
+    "nis": "0156",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "Wafa Aulia Putri",
+    "nis": "0157",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "sabura karata",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "hafifah fatiyah",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "riyanda oktapia",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "muhammad wahyu dwi putra",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "tri adem saputra",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 7"
+  },
+  {
+    "name": "Abdika Muhammad Halid",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 8"
+  },
+  {
+    "name": "Ahmad Junaidi Akbar",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 8"
+  },
+  {
+    "name": "Aida Putri",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 8"
+  },
+  {
+    "name": "Azril Alfahrizi",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 8"
+  },
+  {
+    "name": "Baiq Ulfa",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 8"
+  },
+  {
+    "name": "Hera Fadila Rohan Ningsih",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 8"
+  },
+  {
+    "name": "Hisnu Hotimah",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 8"
+  },
+  {
+    "name": "Iraika",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 8"
+  },
+  {
+    "name": "Messya Yolanda",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 8"
+  },
+  {
+    "name": "Muhammad Hamdi",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 8"
+  },
+  {
+    "name": "Muhamad Ihsan",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 8"
+  },
+  {
+    "name": "Muhammad Ersan Riski",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 8"
+  },
+  {
+    "name": "Muhammad Rendy",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 8"
+  },
+  {
+    "name": "Naura Agustina Mora",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 8"
+  },
+  {
+    "name": "Noval Alfarih",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 8"
+  },
+  {
+    "name": "Reyzo Febriyan Iqbal",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 8"
+  },
+  {
+    "name": "Ridoan",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 8"
+  },
+  {
+    "name": "Sahrul Nadi",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 8"
+  },
+  {
+    "name": "Salfana Febriani Liran",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 8"
+  },
+  {
+    "name": "Sanru Alfarizi",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 8"
+  },
+  {
+    "name": "Siska Juliani",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 8"
+  },
+  {
+    "name": "Yeyen Alena",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 8"
+  },
+  {
+    "name": "Afan Halfan",
+    "nis": "0096",
+    "member_type": "SMP",
+    "grade": "Kelas 9"
+  },
+  {
+    "name": "Dinda Saputri",
+    "nis": "0097",
+    "member_type": "SMP",
+    "grade": "Kelas 9"
+  },
+  {
+    "name": "Diva",
+    "nis": "0098",
+    "member_type": "SMP",
+    "grade": "Kelas 9"
+  },
+  {
+    "name": "EGI ANUGRAH PUTRA",
+    "nis": "0099",
+    "member_type": "SMP",
+    "grade": "Kelas 9"
+  },
+  {
+    "name": "Febrianto",
+    "nis": "0100",
+    "member_type": "SMP",
+    "grade": "Kelas 9"
+  },
+  {
+    "name": "Fera Diana",
+    "nis": "",
+    "member_type": "SMP",
+    "grade": "Kelas 9"
+  },
+  {
+    "name": "Fiska Gayatri",
+    "nis": "0101",
+    "member_type": "SMP",
+    "grade": "Kelas 9"
+  },
+  {
+    "name": "Fitri Arum Waqi'ah",
+    "nis": "0102",
+    "member_type": "SMP",
+    "grade": "Kelas 9"
+  },
+  {
+    "name": "Galang Hermansyah",
+    "nis": "0103",
+    "member_type": "SMP",
+    "grade": "Kelas 9"
+  },
+  {
+    "name": "Haris Gema Ramadhan",
+    "nis": "0104",
+    "member_type": "SMP",
+    "grade": "Kelas 9"
+  },
+  {
+    "name": "Idris Apandi",
+    "nis": "0105",
+    "member_type": "SMP",
+    "grade": "Kelas 9"
+  },
+  {
+    "name": "IRPANSYAH",
+    "nis": "0106",
+    "member_type": "SMP",
+    "grade": "Kelas 9"
+  },
+  {
+    "name": "Malik Ibnu Ahmad",
+    "nis": "0107",
+    "member_type": "SMP",
+    "grade": "Kelas 9"
+  },
+  {
+    "name": "Muhammad Ramdan Hapip",
+    "nis": "0108",
+    "member_type": "SMP",
+    "grade": "Kelas 9"
+  },
+  {
+    "name": "NUR AENI",
+    "nis": "0109",
+    "member_type": "SMP",
+    "grade": "Kelas 9"
+  },
+  {
+    "name": "Rafa Para Dillah",
+    "nis": "0110",
+    "member_type": "SMP",
+    "grade": "Kelas 9"
+  },
+  {
+    "name": "Sakina Wilda Ayu",
+    "nis": "0112",
+    "member_type": "SMP",
+    "grade": "Kelas 9"
+  }
+]

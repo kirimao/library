@@ -9,9 +9,14 @@ use App\Models\Category;
 use App\Repositories\Contracts\CategoryRepositoryInterface;
 use Exception;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class CategoryManager extends Component
 {
+    use WithPagination;
+
+    public string $search = '';
+    public int|string $perPage = 10;
     public string $name = '';
     public string $code = '';
     public string $slug = '';
@@ -23,6 +28,24 @@ class CategoryManager extends Component
     public bool $isDeleteModalOpen = false;
     public ?Category $deletingCategory = null;
     public int $deletingBooksCount = 0;
+
+    public function mount(): void
+    {
+        $allowed = [10, 25, 50, 'all'];
+        $saved = session('perPage_categories', 10);
+        $this->perPage = in_array($saved, $allowed, true) || in_array((int)$saved, [10, 25, 50], true) ? $saved : 10;
+    }
+
+    public function updatingSearch(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatingPerPage(): void
+    {
+        $this->resetPage();
+        session(['perPage_categories' => $this->perPage]);
+    }
 
     public function openModal(?int $id = null)
     {
@@ -110,8 +133,12 @@ class CategoryManager extends Component
 
     public function render(CategoryRepositoryInterface $categoryRepository)
     {
+        $perPageInt = $this->perPage === 'all'
+            ? max(1, $categoryRepository->getTotalCount())
+            : (int) $this->perPage;
+
         return view('livewire.categories.category-manager', [
-            'categories' => $categoryRepository->all(),
+            'categories' => $categoryRepository->paginate($perPageInt, $this->search),
         ])->layout('layouts.app');
     }
 }

@@ -46,6 +46,19 @@
         border-color: #12a24a;
         box-shadow: 0 0 0 3px rgba(18, 162, 74, 0.12);
     }
+    .per-page-select {
+        @apply bg-white border border-gray-300 rounded-xl text-xs font-bold text-gray-700 focus:outline-none cursor-pointer transition-all;
+        padding-left: 0.85rem !important;
+        padding-right: 2.25rem !important;
+        min-width: 88px;
+        text-align: center;
+        text-align-last: center;
+        -moz-text-align-last: center;
+    }
+    .per-page-select:focus {
+        border-color: #12a24a;
+        box-shadow: 0 0 0 3px rgba(18, 162, 74, 0.12);
+    }
     .form-label {
         @apply block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5;
     }

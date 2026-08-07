@@ -149,11 +149,13 @@
             <div class="divide-y divide-gray-100">
                 @forelse($recentLoans as $loan)
                     @php
-                        $isOverdue = $loan->status !== 'returned' && $loan->due_date < now();
+                        $isOverdue = !in_array($loan->status, ['returned', 'hilang']) && $loan->due_date < now();
                         $badgeClass = $loan->status === 'returned' ? 'badge-success' :
-                                      ($isOverdue ? 'badge-danger' : 'badge-warning');
+                                      ($loan->status === 'hilang' ? 'badge-danger' :
+                                      ($isOverdue ? 'badge-danger' : 'badge-warning'));
                         $statusLabel = $loan->status === 'returned' ? __('loans.status_returned') :
-                                       ($isOverdue ? __('loans.status_overdue') : __('loans.status_borrowed'));
+                                       ($loan->status === 'hilang' ? 'Buku Hilang' :
+                                       ($isOverdue ? __('loans.status_overdue') : __('loans.status_borrowed')));
                     @endphp
                     <div class="flex items-center gap-4 px-5 py-3.5 hover:bg-gray-50 transition-colors">
                         <div class="flex-1 min-w-0">

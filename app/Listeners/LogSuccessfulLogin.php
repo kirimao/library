@@ -15,6 +15,15 @@ class LogSuccessfulLogin
         $user = $event->user;
         $request = request();
 
+        // Cegah pembuatan log ganda dalam rentang 5 detik untuk pengguna yang sama
+        $recentLog = LoginLog::where('user_id', $user->id)
+            ->where('created_at', '>=', now()->subSeconds(5))
+            ->first();
+
+        if ($recentLog) {
+            return;
+        }
+
         LoginLog::create([
             'user_id'    => $user->id,
             'email'      => $user->email,

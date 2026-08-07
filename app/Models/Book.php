@@ -18,15 +18,20 @@ class Book extends Model
         'isbn',
         'category_id',
         'publisher',
+        'price',
+        'cover_type',
         'year',
         'arrival_month',
         'arrival_year',
         'total_copies',
         'available_copies',
         'shelf_location',
+        'cover_image',
+        'cover_thumbnail',
     ];
 
     protected $casts = [
+        'price' => 'decimal:2',
         'year' => 'integer',
         'arrival_month' => 'integer',
         'arrival_year' => 'integer',

@@ -9,9 +9,14 @@ use App\Models\Genre;
 use App\Repositories\Contracts\GenreRepositoryInterface;
 use Exception;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class GenreManager extends Component
 {
+    use WithPagination;
+
+    public string $search = '';
+    public int|string $perPage = 10;
     public $name = '';
     public $editingGenreId = null;
     public $isOpen = false;
@@ -24,6 +29,24 @@ class GenreManager extends Component
     protected $rules = [
         'name' => 'required|string|max:100|unique:genres,name',
     ];
+
+    public function mount(): void
+    {
+        $allowed = [10, 25, 50, 'all'];
+        $saved = session('perPage_genres', 10);
+        $this->perPage = in_array($saved, $allowed, true) || in_array((int)$saved, [10, 25, 50], true) ? $saved : 10;
+    }
+
+    public function updatingSearch(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatingPerPage(): void
+    {
+        $this->resetPage();
+        session(['perPage_genres' => $this->perPage]);
+    }
 
     public function openModal(?int $id = null)
     {
@@ -101,8 +124,12 @@ class GenreManager extends Component
 
     public function render(GenreRepositoryInterface $genreRepository)
     {
+        $perPageInt = $this->perPage === 'all'
+            ? max(1, $genreRepository->getTotalCount())
+            : (int) $this->perPage;
+
         return view('livewire.genres.genre-manager', [
-            'genres' => $genreRepository->all(),
+            'genres' => $genreRepository->paginate($perPageInt, $this->search),
         ])->layout('layouts.app');
     }
 }

@@ -34,13 +34,13 @@ class ReturnBookAction
             throw new Exception(__('loans.already_returned_error') ?? 'Peminjaman ini sudah dikembalikan sebelumnya.');
         }
 
-        $actualReturnDate = $returnDate ? Carbon::parse($returnDate) : Carbon::today();
-        $fineAmount = $this->calculateFineAction->execute($loan->due_date, $actualReturnDate);
+        $actualReturnDate = $returnDate ? Carbon::parse($returnDate) : Carbon::now();
+        $fineAmount = $this->calculateFineAction->execute($loan->due_date, $actualReturnDate, $loan->book);
 
         return DB::transaction(function () use ($loan, $actualReturnDate, $fineAmount, $readingStatus, $comment) {
             // Update loan status & denda
             $updatedLoan = $this->loanRepository->update($loan->id, [
-                'return_date' => $actualReturnDate->toDateString(),
+                'return_date' => $actualReturnDate->toDateTimeString(),
                 'status' => 'returned',
                 'reading_status' => $readingStatus,
                 'fine_amount' => $fineAmount,

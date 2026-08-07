@@ -86,7 +86,7 @@ class EloquentBookRepository implements BookRepositoryInterface
     {
         $book = $this->findById($id);
 
-        if (isset($data['total_copies']) && $data['total_copies'] != $book->total_copies) {
+        if (isset($data['total_copies']) && $data['total_copies'] != $book->total_copies && !isset($data['available_copies'])) {
             $diff = $data['total_copies'] - $book->total_copies;
             $data['available_copies'] = max(0, $book->available_copies + $diff);
         }

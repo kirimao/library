@@ -61,7 +61,7 @@ class BorrowBookAction
         }
 
         // 5. Hitung tanggal peminjaman dan jatuh tempo
-        $loanDate = Carbon::today();
+        $loanDate = Carbon::now();
         if ($dueDateInput) {
             $dueDate = Carbon::parse($dueDateInput);
         } elseif ($customLoanDays) {
@@ -76,7 +76,7 @@ class BorrowBookAction
             return $this->loanRepository->create([
                 'book_id' => $bookId,
                 'member_id' => $memberId,
-                'loan_date' => $loanDate->toDateString(),
+                'loan_date' => $loanDate->toDateTimeString(),
                 'due_date' => $dueDate->toDateString(),
                 'status' => 'borrowed',
                 'fine_amount' => 0,

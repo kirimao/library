@@ -30,7 +30,7 @@
                             @error('author') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
                         </div>
                         <div>
-                            <label class="form-label">{{ __('books.isbn') }} *</label>
+                            <label class="form-label">{{ __('books.isbn') }} (Opsional)</label>
                             <input wire:model="isbn" type="text" class="form-input font-mono">
                             @error('isbn') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
                         </div>
@@ -117,6 +117,27 @@
                         </div>
                     </div>
 
+                    {{-- Harga & Jenis Cover --}}
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="form-label">{{ __('books.price') }} (Rp)</label>
+                            <input wire:model="price" type="number" min="0" step="500" placeholder="0" class="form-input font-mono">
+                            @error('price') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
+                        </div>
+                        <div>
+                            <label class="form-label">{{ __('books.cover_type') }}</label>
+                            <select wire:model="cover_type" class="form-select">
+                                <option value="">-- Pilih Jenis Cover --</option>
+                                <option value="Paperback">Paperback</option>
+                                <option value="Hardcover">Hardcover</option>
+                                <option value="Softcover">Softcover</option>
+                                <option value="Spiral">Spiral / Ring</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                            @error('cover_type') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
+                        </div>
+                    </div>
+
                     {{-- Waktu Kedatangan Buku --}}
                     <div class="p-3.5 bg-brand-50/60 rounded-2xl border border-brand-200/80 space-y-2.5">
                         <div class="flex items-center justify-between">
@@ -148,6 +169,46 @@
                                     @endfor
                                 </select>
                                 @error('arrival_year') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Upload Gambar Cover Buku --}}
+                    <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200/80 space-y-2">
+                        <label class="form-label text-xs font-extrabold text-slate-800 flex items-center justify-between">
+                            <span>Gambar Cover Buku (Maks. 5 MB)</span>
+                            <span class="text-[10px] text-slate-400 font-normal">Format: JPG, PNG, WebP · Dikompres otomatis</span>
+                        </label>
+
+                        <div class="flex items-center gap-3">
+                            <div class="w-16 h-20 rounded-xl bg-slate-200 border border-slate-300 overflow-hidden flex-shrink-0 relative flex items-center justify-center text-slate-400">
+                                @if ($cover_image_file)
+                                    <img src="{{ $cover_image_file->temporaryUrl() }}" class="w-full h-full object-cover">
+                                @elseif ($currentCoverThumbnail)
+                                    <img src="{{ asset('storage/' . $currentCoverThumbnail) }}" class="w-full h-full object-cover">
+                                @else
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                    </svg>
+                                @endif
+                                <div wire:loading wire:target="cover_image_file" class="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center text-white text-[10px] font-bold">
+                                    ⏳ Proses...
+                                </div>
+                            </div>
+                            <div class="flex-1 min-w-0 space-y-1.5">
+                                <input type="file" wire:model="cover_image_file" accept="image/jpeg,image/png,image/jpg,image/webp"
+                                       class="block w-full text-xs text-slate-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-brand-50 file:text-brand-700 hover:file:bg-brand-100 transition-all cursor-pointer">
+                                @error('cover_image_file')
+                                    <p class="text-xs font-bold text-red-600">⚠ {{ $message }}</p>
+                                @else
+                                    @if($cover_image_file)
+                                        <p class="text-[11px] text-emerald-700 font-semibold">
+                                            ✅ Gambar dipilih ({{ round($cover_image_file->getSize() / 1024) }} KB) — akan dikompres otomatis saat disimpan
+                                        </p>
+                                    @else
+                                        <p class="text-[10px] text-slate-400">Kosongkan jika tidak ingin mengubah gambar cover.</p>
+                                    @endif
+                                @enderror
                             </div>
                         </div>
                     </div>

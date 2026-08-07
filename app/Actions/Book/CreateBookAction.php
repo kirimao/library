@@ -13,6 +13,11 @@ class CreateBookAction
 
     public function execute(array $data, array $genreIds = []): Book
     {
+        if (empty($data['isbn'])) {
+            $nextId = (Book::max('id') ?? 0) + 1;
+            $data['isbn'] = 'BK-' . date('Y') . '-' . str_pad((string) $nextId, 5, '0', STR_PAD_LEFT);
+        }
+
         if (!isset($data['available_copies'])) {
             $data['available_copies'] = $data['total_copies'] ?? 1;
         }

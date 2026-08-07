@@ -33,7 +33,7 @@ return [
     'review_comment' => 'Ulasan / Komentar *',
     'save_review' => 'Simpan Ulasan',
     'review_success' => 'Ulasan/Komentar berhasil ditambahkan!',
-    'back_to_catalog' => '← Kembali ke Katalog',
+    'back_to_catalog' => 'Kembali ke Katalog',
     'no_readers' => 'Belum ada riwayat pembaca untuk buku ini.',
     'no_reviews' => 'Belum ada komentar ulasan.',
     'arrival_status' => 'Status Kedatangan',
@@ -53,4 +53,8 @@ return [
     'select_year' => 'Pilih Tahun',
     'search_genre' => 'Cari genre...',
     'selected' => 'dipilih',
+    'price' => 'Harga Buku',
+    'cover_type' => 'Tipe Sampul',
+    'import_csv' => 'Impor CSV',
+    'by_author' => 'Oleh :author',
 ];

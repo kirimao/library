@@ -53,4 +53,8 @@ return [
     'select_year' => 'Select Year',
     'search_genre' => 'Search genre...',
     'selected' => 'selected',
+    'price' => 'Book Price',
+    'cover_type' => 'Cover Type',
+    'import_csv' => 'Import CSV',
+    'by_author' => 'By :author',
 ];

@@ -16,28 +16,56 @@
                 <div class="flex items-center gap-2">
                     <h1 class="text-xl font-black text-gray-900">{{ $member->name }}</h1>
                     <span class="badge-neutral text-xs font-bold">{{ __('members.type_' . $member->member_type) }}</span>
+                    @if($member->grade)
+                        <span class="inline-flex items-center px-2 py-0.5 rounded-lg text-xs font-bold bg-amber-50 text-amber-700 border border-amber-200">{{ $member->grade }}</span>
+                    @endif
                     @if($member->status === 'active')
                         <span class="badge-success text-xs">{{ __('common.active') }}</span>
                     @else
                         <span class="badge-danger text-xs">{{ __('common.inactive') }}</span>
                     @endif
                 </div>
-                <p class="text-xs font-mono text-brand-600 font-bold mt-1">{{ $member->member_number }} · {{ $member->email }}</p>
+                <p class="text-xs font-mono text-brand-600 font-bold mt-1">{{ $member->member_number }}@if($member->email) · {{ $member->email }}@endif</p>
             </div>
         </div>
 
-        <div class="bg-brand-50 border border-brand-200 rounded-2xl p-4 flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
-                </svg>
+        <div class="flex flex-wrap items-center gap-3">
+            {{-- Favorite Genre Card --}}
+            <div class="bg-brand-50 border border-brand-200 rounded-2xl p-4 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="block text-[10px] font-bold uppercase tracking-wider text-brand-600">{{ __('members.favorite_genre') }}</span>
+                    <span class="text-sm font-black text-brand-900">
+                        {{ $favoriteGenre->name ?? '-' }}
+                    </span>
+                </div>
             </div>
-            <div>
-                <span class="block text-[10px] font-bold uppercase tracking-wider text-brand-600">{{ __('members.favorite_genre') }}</span>
-                <span class="text-sm font-black text-brand-900">
-                    {{ $favoriteGenre->name ?? '-' }}
-                </span>
-            </div>
+
+            {{-- Lost Books Stat Badge --}}
+            @php
+                $lostLoans = $readingHistory->where('status', 'hilang');
+                $lostCount = $lostLoans->count();
+                $totalLostFine = $lostLoans->sum('fine_amount');
+            @endphp
+            @if($lostCount > 0)
+                <div class="bg-red-50 border border-red-200 rounded-2xl p-4 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] font-bold uppercase tracking-wider text-red-600">Riwayat Buku Hilang</span>
+                        <span class="text-sm font-black text-red-900">
+                            {{ $lostCount }} Buku (Denda Rp{{ number_format($totalLostFine) }})
+                        </span>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 
@@ -57,13 +85,13 @@
                         <th class="py-3 px-4 text-[11px] font-bold uppercase tracking-wider text-gray-400 bg-gray-50 border-b border-gray-200 text-left">{{ __('books.title') }} & {{ __('books.genres') }}</th>
                         <th class="py-3 px-4 text-[11px] font-bold uppercase tracking-wider text-gray-400 bg-gray-50 border-b border-gray-200 text-left">{{ __('loans.loan_date') }}</th>
                         <th class="py-3 px-4 text-[11px] font-bold uppercase tracking-wider text-gray-400 bg-gray-50 border-b border-gray-200 text-left">{{ __('loans.return_date') }} / {{ __('loans.due_date') }}</th>
-                        <th class="py-3 px-4 text-[11px] font-bold uppercase tracking-wider text-gray-400 bg-gray-50 border-b border-gray-200 text-center">{{ __('loans.reading_status') }}</th>
-                        <th class="py-3 px-4 text-[11px] font-bold uppercase tracking-wider text-gray-400 bg-gray-50 border-b border-gray-200 text-left">{{ __('books.review_comment') }}</th>
+                        <th class="py-3 px-4 text-[11px] font-bold uppercase tracking-wider text-gray-400 bg-gray-50 border-b border-gray-200 text-center">Status</th>
+                        <th class="py-3 px-4 text-[11px] font-bold uppercase tracking-wider text-gray-400 bg-gray-50 border-b border-gray-200 text-left">Denda & Catatan</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
                     @forelse($readingHistory as $loan)
-                        <tr class="hover:bg-gray-50 transition-colors">
+                        <tr class="hover:bg-gray-50 transition-colors {{ $loan->status === 'hilang' ? 'bg-red-50/40' : '' }}">
                             <td class="py-3.5 px-4">
                                 <a href="{{ route('books.show', $loan->book->id ?? 0) }}" class="text-sm font-bold text-gray-900 hover:text-brand-600 leading-tight">
                                     {{ $loan->book->title ?? '-' }} ↗
@@ -74,16 +102,25 @@
                                     @endforeach
                                 </div>
                             </td>
-                            <td class="py-3.5 px-4 text-xs text-gray-500">{{ $loan->loan_date->format('d M Y') }}</td>
                             <td class="py-3.5 px-4 text-xs text-gray-500">
-                                @if($loan->return_date)
+                                <span>{{ $loan->loan_date->format('d M Y') }}</span>
+                                <span class="block text-[10px] text-gray-400 font-mono">{{ $loan->loan_date->format('H:i') }}</span>
+                            </td>
+                            <td class="py-3.5 px-4 text-xs text-gray-500">
+                                @if($loan->status === 'hilang')
+                                    <span class="text-red-600 font-bold block">Dilaporkan Hilang</span>
+                                    <span class="text-[10px] text-gray-400 font-mono">{{ $loan->reported_lost_at?->format('d M Y, H:i') ?? $loan->return_date?->format('d M Y, H:i') }}</span>
+                                @elseif($loan->return_date)
                                     <span>{{ $loan->return_date->format('d M Y') }}</span>
+                                    <span class="block text-[10px] text-gray-400 font-mono">{{ $loan->return_date->format('H:i') }}</span>
                                 @else
-                                    <span class="text-amber-600 font-bold">Due: {{ $loan->due_date->format('d M Y') }}</span>
+                                    <span class="text-amber-600 font-bold">Jatuh Tempo: {{ $loan->due_date->format('d M Y') }}</span>
                                 @endif
                             </td>
                             <td class="py-3.5 px-4 text-center">
-                                @if($loan->reading_status === 'selesai_dibaca')
+                                @if($loan->status === 'hilang')
+                                    <span class="badge-danger text-xs font-bold">⚠️ Hilang</span>
+                                @elseif($loan->reading_status === 'selesai_dibaca')
                                     <span class="badge-success text-xs">{{ __('loans.status_selesai_dibaca') }}</span>
                                 @elseif($loan->reading_status === 'belum_selesai')
                                     <span class="badge-warning text-xs">{{ __('loans.status_belum_selesai') }}</span>
@@ -91,9 +128,17 @@
                                     <span class="badge-neutral text-xs">{{ __('loans.status_sedang_dibaca') }}</span>
                                 @endif
                             </td>
-                            <td class="py-3.5 px-4 text-xs text-gray-600 italic">
-                                @if($loan->review)
-                                    "{{ $loan->review->comment }}"
+                            <td class="py-3.5 px-4 text-xs">
+                                @if($loan->status === 'hilang')
+                                    <span class="text-red-600 font-bold font-mono block">Denda Ganti Rugi: Rp{{ number_format($loan->fine_amount ?? 0) }}</span>
+                                    <span class="text-[11px] text-red-500 italic block">Buku dilaporkan hilang oleh anggota ini</span>
+                                @elseif($loan->fine_amount > 0)
+                                    <span class="text-red-600 font-semibold font-mono block">Denda: Rp{{ number_format($loan->fine_amount) }}</span>
+                                    @if($loan->review)
+                                        <span class="text-gray-600 italic block">"{{ $loan->review->comment }}"</span>
+                                    @endif
+                                @elseif($loan->review)
+                                    <span class="text-gray-600 italic">"{{ $loan->review->comment }}"</span>
                                 @else
                                     <span class="text-gray-300">—</span>
                                 @endif

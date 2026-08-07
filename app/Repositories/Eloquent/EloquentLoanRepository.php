@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Models\Book;
 use App\Models\Genre;
 use App\Models\Loan;
 use App\Repositories\Contracts\LoanRepositoryInterface;
@@ -17,7 +18,7 @@ class EloquentLoanRepository implements LoanRepositoryInterface
 {
     public function paginate(int $perPage = 10, ?string $status = null, ?string $search = null): LengthAwarePaginator
     {
-        $query = Loan::with(['book', 'member']);
+        $query = Loan::with(['book.category', 'book.genres', 'member']);
 
         if (!empty($status)) {
             $query->where('status', $status);
@@ -66,7 +67,7 @@ class EloquentLoanRepository implements LoanRepositoryInterface
     {
         $today = Carbon::today()->toDateString();
 
-        return Loan::with(['book', 'member'])
+        return Loan::with(['book.category', 'book.genres', 'member'])
             ->where(function ($q) use ($today) {
                 $q->where('status', 'overdue')
                   ->orWhere(function ($sq) use ($today) {
@@ -76,6 +77,34 @@ class EloquentLoanRepository implements LoanRepositoryInterface
             })
             ->orderBy('due_date', 'asc')
             ->get();
+    }
+
+    public function getOverdueLoansPaginated(int $perPage = 15, ?string $search = null): LengthAwarePaginator
+    {
+        $today = Carbon::today()->toDateString();
+
+        $query = Loan::with(['book.category', 'book.genres', 'member'])
+            ->where(function ($q) use ($today) {
+                $q->where('status', 'overdue')
+                  ->orWhere(function ($sq) use ($today) {
+                      $sq->where('status', 'borrowed')
+                         ->where('due_date', '<', $today);
+                  });
+            });
+
+        if (!empty($search)) {
+            $query->where(function ($q) use ($search) {
+                $q->whereHas('member', function ($mq) use ($search) {
+                    $mq->where('name', 'like', "%{$search}%")
+                       ->orWhere('member_number', 'like', "%{$search}%");
+                })->orWhereHas('book', function ($bq) use ($search) {
+                    $bq->where('title', 'like', "%{$search}%")
+                       ->orWhere('isbn', 'like', "%{$search}%");
+                });
+            });
+        }
+
+        return $query->orderBy('due_date', 'asc')->paginate($perPage);
     }
 
     public function getOverdueLoansCount(): int
@@ -156,26 +185,30 @@ class EloquentLoanRepository implements LoanRepositoryInterface
 
     public function getMostReadBooks(?int $genreId = null, ?string $memberType = null, int $limit = 10): Collection
     {
-        $query = DB::table('books')
-            ->select('books.*', DB::raw('COUNT(loans.id) as loans_count'))
-            ->join('loans', 'books.id', '=', 'loans.book_id');
+        $query = Book::with(['category', 'genres'])
+            ->withCount(['loans' => function ($lq) use ($memberType) {
+                if (!empty($memberType)) {
+                    $lq->whereHas('member', function ($mq) use ($memberType) {
+                        $mq->where('member_type', $memberType);
+                    });
+                }
+            }]);
 
         if (!empty($genreId)) {
-            $query->join('book_genre', 'books.id', '=', 'book_genre.book_id')
-                  ->where('book_genre.genre_id', $genreId);
+            $query->whereHas('genres', function ($gq) use ($genreId) {
+                $gq->where('genres.id', $genreId);
+            });
         }
 
         if (!empty($memberType)) {
-            $query->join('members', 'loans.member_id', '=', 'members.id')
-                  ->where('members.member_type', $memberType);
+            $query->whereHas('loans.member', function ($mq) use ($memberType) {
+                $mq->where('member_type', $memberType);
+            });
         }
 
-        $results = $query->groupBy('books.id', 'books.title', 'books.author', 'books.isbn', 'books.category_id', 'books.publisher', 'books.year', 'books.total_copies', 'books.available_copies', 'books.shelf_location', 'books.created_at', 'books.updated_at')
-            ->orderBy('loans_count', 'desc')
+        return $query->orderBy('loans_count', 'desc')
             ->take($limit)
             ->get();
-
-        return Collection::make($results);
     }
 
     public function getFavoriteGenreForMember(int $memberId): ?Genre
