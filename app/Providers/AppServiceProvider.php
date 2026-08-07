@@ -22,7 +22,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Log every successful login
-        Event::listen(Login::class, LogSuccessfulLogin::class);
+        // Event listeners in app/Listeners are auto-discovered by Laravel
     }
 }

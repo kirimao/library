@@ -128,7 +128,7 @@ class ImportBooksFromCsvAction
             $isbn = 'BK-CSV-' . date('Y') . '-' . str_pad((string) $bookCounter, 5, '0', STR_PAD_LEFT);
 
             $qtyInt = is_numeric($quantity) && (int)$quantity > 0 ? (int)$quantity : 1;
-            $priceNum = is_numeric($price) && (float)$price > 0 ? (float)$price : null;
+            $priceNum = $this->parsePrice($price);
 
             Book::create([
                 'title' => $title,
@@ -156,5 +156,56 @@ class ImportBooksFromCsvAction
             'failed' => $failed,
             'errors' => $errors,
         ];
+    }
+
+    /**
+     * Parse raw price string into float cleanly.
+     * Supports formats like "30.000", "15.000", "1.500.000", "30000", "Rp 30.000", "15.000,00".
+     */
+    protected function parsePrice(?string $rawPrice): ?float
+    {
+        if ($rawPrice === null || trim($rawPrice) === '') {
+            return null;
+        }
+
+        $clean = trim($rawPrice);
+        $clean = preg_replace('/[^\d.,]/', '', $clean);
+
+        if ($clean === '') {
+            return null;
+        }
+
+        if (str_contains($clean, '.') && str_contains($clean, ',')) {
+            $lastDotPos = strrpos($clean, '.');
+            $lastCommaPos = strrpos($clean, ',');
+
+            if ($lastCommaPos > $lastDotPos) {
+                $clean = str_replace('.', '', $clean);
+                $clean = str_replace(',', '.', $clean);
+            } else {
+                $clean = str_replace(',', '', $clean);
+            }
+        } elseif (str_contains($clean, '.')) {
+            $parts = explode('.', $clean);
+            $numParts = count($parts);
+
+            if ($numParts > 2) {
+                $clean = str_replace('.', '', $clean);
+            } elseif ($numParts === 2) {
+                $decimalPart = $parts[1];
+                if (strlen($decimalPart) === 3) {
+                    $clean = str_replace('.', '', $clean);
+                }
+            }
+        } elseif (str_contains($clean, ',')) {
+            $parts = explode(',', $clean);
+            if (count($parts) === 2 && strlen($parts[1]) === 3) {
+                $clean = str_replace(',', '', $clean);
+            } else {
+                $clean = str_replace(',', '.', $clean);
+            }
+        }
+
+        return is_numeric($clean) && (float)$clean > 0 ? (float)$clean : null;
     }
 }
