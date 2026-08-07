@@ -11,6 +11,7 @@ return [
     'overdue' => 'Overdue Loans',
     'popular_reports' => 'Popular Reports',
     'login_logs' => 'Login Logs',
+    'users' => 'Manage Librarians',
     'logout' => 'Log Out',
     'language' => 'Language',
     'indonesian' => 'Bahasa Indonesia',

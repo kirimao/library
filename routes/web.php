@@ -39,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Log Login — hanya admin
     Route::get('/login-logs', LoginLogIndex::class)->name('login-logs.index');
+    Route::get('/users', \App\Livewire\Users\UserManager::class)->name('users.index');
 
     Route::view('profile', 'profile')->name('profile');
 });
