@@ -2,10 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'Keep Calm';
+    src: url('/font/KeepCalm-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'KeepCalm';
+    src: url('/font/KeepCalm-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 @layer base {
-    html {
+    html, body {
+        font-family: 'Inter', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+    }
+    h1, h2, h3, h4, h5, h6, .font-heading, .font-display, .page-title, .page-subtitle {
+        font-family: 'Keep Calm', 'KeepCalm', 'Inter', sans-serif;
     }
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: #f1f5f9; }

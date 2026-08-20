@@ -46,7 +46,7 @@ class LandingPage extends Component
         $publicReviews = BookReview::with(['book:id,title', 'member:id,member_type,grade'])
             ->whereNotNull('comment')
             ->where('comment', '!=', '')
-            ->whereRaw('CHAR_LENGTH(comment) >= 20')
+            ->whereRaw('LENGTH(comment) >= 20')
             ->latest()
             ->take(3)
             ->get();

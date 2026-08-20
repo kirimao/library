@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Perpustakaan YPA Yayasan Peduli Anak — Temukan ribuan buku pilihan untuk menumbuhkan semangat belajar dan kecintaan membaca anak-anak.">
         <meta name="robots" content="index, follow">
-        <title>Perpustakaan YPA — Yayasan Peduli Anak</title>
+        <title>{{ __('landing.hero_library_name') }} — {{ __('landing.foundation_name') }}</title>
         <link rel="icon" type="image/png" href="{{ asset('images/logoypa.png') }}">
 
         {{-- Fonts: Bricolage Grotesque (display/headline) + Inter (body) --}}
@@ -16,7 +16,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <style>
-            .font-display { font-family: 'Bricolage Grotesque', 'Inter', sans-serif; }
+            .font-display { font-family: 'Keep Calm', 'KeepCalm', 'Inter', sans-serif; }
 
             /* Smooth fade-up transition without hiding elements */
             .animate-section {

@@ -12,7 +12,9 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Inter', 'Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Inter', ...defaultTheme.fontFamily.sans],
+                display: ['"Keep Calm"', 'KeepCalm', 'Inter', ...defaultTheme.fontFamily.sans],
+                heading: ['"Keep Calm"', 'KeepCalm', 'Inter', ...defaultTheme.fontFamily.sans],
             },
             colors: {
                 brand: {

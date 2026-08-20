@@ -17,7 +17,7 @@ class LanguageSwitcher extends Component
 
     public function switchLanguage(string $locale)
     {
-        if (in_array($locale, ['id', 'en'])) {
+        if (in_array($locale, ['id', 'en', 'nl', 'fr', 'ms', 'ar'])) {
             Session::put('locale', $locale);
             App::setLocale($locale);
             $this->currentLocale = $locale;

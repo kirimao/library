@@ -11,16 +11,14 @@
             <div>
                 {{-- Institution badge --}}
                 <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-bold mb-3">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                    </svg>
-                    Perpustakaan YPA — Yayasan Peduli Anak
+                    <img src="{{ asset('Visual Asset Icon/Visual Icon Asset_g80.png') }}" class="w-4 h-4 object-contain" alt="Peduli Anak Icon">
+                    {{ __('landing.hero_library_name') }} — {{ __('landing.foundation_name') }}
                 </div>
                 <h1 class="text-xl sm:text-2xl font-black text-white tracking-tight">
-                    Selamat datang, {{ explode(' ', Auth::user()->name)[0] }}! 👋
+                    {{ __('dashboard.welcome', ['name' => explode(' ', Auth::user()->name)[0]]) }} 👋
                 </h1>
                 <p class="text-white/70 text-sm mt-1.5">
-                    Ringkasan aktivitas perpustakaan hari ini.
+                    {{ __('dashboard.subtitle') }}
                 </p>
             </div>
             <a href="{{ route('loans.create') }}"
@@ -41,60 +39,52 @@
         <div class="stat-card">
             <div class="flex items-start justify-between gap-2">
                 <p class="text-xs font-bold uppercase tracking-wider text-gray-400">{{ __('dashboard.total_books') }}</p>
-                <div class="w-9 h-9 flex-shrink-0 rounded-xl bg-brand-50 flex items-center justify-center">
-                    <svg class="w-4.5 h-4.5 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                    </svg>
+                <div class="w-9 h-9 flex-shrink-0 rounded-xl bg-brand-50 flex items-center justify-center p-1.5">
+                    <img src="{{ asset('Visual Asset Icon/Visual Icon Asset_g50.png') }}" class="w-full h-full object-contain" alt="Total Books Icon">
                 </div>
             </div>
             <p class="mt-4 text-3xl font-black text-gray-900 tabular-nums">{{ number_format($totalBooks) }}</p>
-            <p class="text-xs text-gray-400 mt-1">Judul tersedia</p>
+            <p class="text-xs text-gray-400 mt-1">{{ __('dashboard.available_titles') }}</p>
         </div>
 
         {{-- Active Members --}}
         <div class="stat-card">
             <div class="flex items-start justify-between gap-2">
                 <p class="text-xs font-bold uppercase tracking-wider text-gray-400">{{ __('dashboard.total_members') }}</p>
-                <div class="w-9 h-9 flex-shrink-0 rounded-xl bg-blue-50 flex items-center justify-center">
-                    <svg class="w-4.5 h-4.5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
-                    </svg>
+                <div class="w-9 h-9 flex-shrink-0 rounded-xl bg-blue-50 flex items-center justify-center p-1.5">
+                    <img src="{{ asset('Visual Asset Icon/Visual Icon Asset_g76.png') }}" class="w-full h-full object-contain" alt="Members Icon">
                 </div>
             </div>
             <p class="mt-4 text-3xl font-black text-gray-900 tabular-nums">{{ number_format($totalMembers) }}</p>
-            <p class="text-xs text-gray-400 mt-1">Anggota aktif</p>
+            <p class="text-xs text-gray-400 mt-1">{{ __('dashboard.active_members_sub') }}</p>
         </div>
 
         {{-- Borrowed --}}
         <div class="stat-card">
             <div class="flex items-start justify-between gap-2">
                 <p class="text-xs font-bold uppercase tracking-wider text-gray-400">{{ __('dashboard.total_borrowed') }}</p>
-                <div class="w-9 h-9 flex-shrink-0 rounded-xl bg-amber-50 flex items-center justify-center">
-                    <svg class="w-4.5 h-4.5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
-                    </svg>
+                <div class="w-9 h-9 flex-shrink-0 rounded-xl bg-amber-50 flex items-center justify-center p-1.5">
+                    <img src="{{ asset('Visual Asset Icon/Visual Icon Asset_g71.png') }}" class="w-full h-full object-contain" alt="Borrowed Icon">
                 </div>
             </div>
             <p class="mt-4 text-3xl font-black text-gray-900 tabular-nums">{{ number_format($totalBorrowed) }}</p>
-            <p class="text-xs text-gray-400 mt-1">Sedang dipinjam</p>
+            <p class="text-xs text-gray-400 mt-1">{{ __('dashboard.currently_borrowed_sub') }}</p>
         </div>
 
         {{-- Overdue --}}
         <div class="stat-card {{ $totalOverdue > 0 ? 'border-red-200 bg-red-50' : '' }}">
             <div class="flex items-start justify-between gap-2">
                 <p class="text-xs font-bold uppercase tracking-wider {{ $totalOverdue > 0 ? 'text-red-400' : 'text-gray-400' }}">{{ __('dashboard.total_overdue') }}</p>
-                <div class="w-9 h-9 flex-shrink-0 rounded-xl bg-red-50 flex items-center justify-center {{ $totalOverdue > 0 ? 'bg-red-100' : '' }}">
-                    <svg class="w-4.5 h-4.5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
+                <div class="w-9 h-9 flex-shrink-0 rounded-xl bg-red-50 flex items-center justify-center p-1.5 {{ $totalOverdue > 0 ? 'bg-red-100' : '' }}">
+                    <img src="{{ asset('Visual Asset Icon/Visual Icon Asset_g85.png') }}" class="w-full h-full object-contain" alt="Overdue Icon">
                 </div>
             </div>
             <p class="mt-4 text-3xl font-black {{ $totalOverdue > 0 ? 'text-red-600' : 'text-gray-900' }} tabular-nums">{{ number_format($totalOverdue) }}</p>
             <p class="text-xs mt-1 {{ $totalOverdue > 0 ? 'text-red-400' : 'text-gray-400' }}">
                 @if($totalOverdue > 0)
-                    <a href="{{ route('loans.overdue') }}" class="hover:underline font-semibold">Lihat detail →</a>
+                    <a href="{{ route('loans.overdue') }}" class="hover:underline font-semibold">{{ __('dashboard.view_details') }} →</a>
                 @else
-                    Semua tepat waktu ✓
+                    {{ __('dashboard.all_on_time') }} ✓
                 @endif
             </p>
         </div>
