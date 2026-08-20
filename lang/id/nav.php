@@ -18,4 +18,6 @@ return [
     'english' => 'English',
     'role_admin' => 'Administrator',
     'role_librarian' => 'Pustakawan',
+    'main_menu' => 'Menu Utama',
+    'circulation_reports' => 'Sirkulasi & Laporan',
 ];

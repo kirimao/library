@@ -30,8 +30,8 @@ new class extends Component
                  alt="Logo YPA"
                  class="h-9 w-9 flex-shrink-0 rounded-xl object-contain bg-white/90 p-1 group-hover:bg-white transition-colors">
             <div class="min-w-0">
-                <p class="font-extrabold text-sm text-white leading-tight truncate">Perpustakaan YPA</p>
-                <p class="text-[10px] font-semibold text-white/60 mt-0.5 truncate">Yayasan Peduli Anak</p>
+                <p class="font-extrabold text-sm text-white leading-tight truncate">{{ __('landing.hero_library_name') }}</p>
+                <p class="text-[10px] font-semibold text-white/60 mt-0.5 truncate">{{ __('landing.foundation_name') }}</p>
             </div>
         </a>
     </div>
@@ -39,7 +39,7 @@ new class extends Component
     {{-- Navigation --}}
     <nav class="flex-1 p-3 space-y-0.5">
 
-        <p class="px-3 pt-2 pb-1.5 text-[10px] uppercase tracking-widest font-bold text-white/40">Menu Utama</p>
+        <p class="px-3 pt-2 pb-1.5 text-[10px] uppercase tracking-widest font-bold text-white/40">{{ __('nav.main_menu') }}</p>
 
         {{-- Dashboard --}}
         <a href="{{ route('dashboard') }}"
@@ -114,7 +114,7 @@ new class extends Component
 
         {{-- Divider --}}
         <div class="!my-3 border-t" style="border-color: rgba(255,255,255,0.12);"></div>
-        <p class="px-3 pb-1.5 text-[10px] uppercase tracking-widest font-bold text-white/40">Sirkulasi & Laporan</p>
+        <p class="px-3 pb-1.5 text-[10px] uppercase tracking-widest font-bold text-white/40">{{ __('nav.circulation_reports') }}</p>
 
         {{-- Borrow --}}
         <a href="{{ route('loans.create') }}"

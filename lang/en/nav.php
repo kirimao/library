@@ -18,4 +18,6 @@ return [
     'english' => 'English',
     'role_admin' => 'Administrator',
     'role_librarian' => 'Librarian',
+    'main_menu' => 'Main Menu',
+    'circulation_reports' => 'Circulation & Reports',
 ];
